@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-sans text-gray-900 bg-white transition-colors duration-300;
+  }
+  
+  body.dark {
+    @apply bg-gray-900 text-white;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+  
+  ::selection {
+    @apply bg-green-500 text-white;
+  }
+}
+
+/* Custom classes */
+.tech-icon {
+  @apply flex flex-col items-center justify-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md text-center;
+}
+
+.tech-icon i {
+  @apply text-3xl text-green-500 mb-2;
+}
+
+.expertise-box {
+  @apply p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md flex flex-col items-center justify-center text-center h-full;
+}
+
+.expertise-box i {
+  @apply text-3xl text-green-500 mb-3;
+}
+
+/* Hide cursor on touch devices */
+@media (pointer: coarse) {
+  .cursor-dot, .cursor-ring {
+    display: none !important;
+  }
+}
+
+/* Animation classes */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
