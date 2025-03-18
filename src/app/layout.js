@@ -1,17 +1,13 @@
 'use client'
 
+import React, { useState, useEffect } from 'react'
 import './globals.css'
-import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Cursor from './components/Cursor'
 import ThemeToggle from './components/ThemeToggle'
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }) {
   const [darkMode, setDarkMode] = useState(true)
   
   useEffect(() => {
