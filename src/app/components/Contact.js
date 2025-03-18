@@ -31,9 +31,18 @@ export default function Contact() {
     setFormStatus({ submitting: true, submitted: false, error: null });
     
     try {
-      // In a real application, you would send this data to your backend
-      // For demo purposes, we'll simulate a successful submission
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Replace 'xxxxxxxz' with your actual Formspree form ID
+      const response = await fetch('https://formspree.io/f/myzezqdg', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to submit the form');
+      }
       
       setFormStatus({ submitting: false, submitted: true, error: null });
       setFormData({ name: '', email: '', subject: '', message: '' });
@@ -43,7 +52,11 @@ export default function Contact() {
         setFormStatus({ submitting: false, submitted: false, error: null });
       }, 5000);
     } catch (error) {
-      setFormStatus({ submitting: false, submitted: false, error: 'There was an error submitting the form. Please try again.' });
+      setFormStatus({ 
+        submitting: false, 
+        submitted: false, 
+        error: 'There was an error submitting the form. Please try again.' 
+      });
     }
   };
 
