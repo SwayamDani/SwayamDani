@@ -39,7 +39,7 @@ export default function Projects() {
       tags: ["ai", "hackathon"],
       tech: ["Python", "Streamlit", "OpenAI API", "HTML", "CSS"],
       github: "https://github.com/SwayamDani/dr-ai",
-      demo: "https://doctorai1.streamlit.app/",
+      demo: "https://web-production-4a51.up.railway.app/",
       featured: true
     },
     {
