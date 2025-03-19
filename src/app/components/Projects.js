@@ -28,7 +28,7 @@ export default function Projects() {
       tags: ["ai", "web"],
       tech: ["React.js", "Node.js", "Firebase", "OpenAI API", "DALL-E"],
       github: "https://github.com/SwayamDani/styleai",
-      demo: "https://styleai.vercel.app",
+      demo: "https://outfit-creator-one.vercel.app/",
       featured: true
     },
     {
