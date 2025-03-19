@@ -47,6 +47,16 @@ export default function Projects() {
       tech: ["OpenAI API", "JavaScript", "Node.js", "CSS", "HTML"],
       github: "https://github.com/SwayamDani/travel-planner",
       featured: false
+    },
+    {
+      id: 5,
+      title: "UniRideShare",
+      description: "A university-focused rideshare platform connecting students for campus commutes and travel.",
+      demoUrl: "https://unirideshare.com",
+      tags: ["web"],
+      tech: ["React.js", "Firebase", "Firestore", "JavaScript", "CSS"],
+      github: "https://github.com/SwayamDani/unirideshare",
+      featured: true
     }
   ];
 
