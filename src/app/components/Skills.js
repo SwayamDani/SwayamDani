@@ -8,16 +8,30 @@ import { Chart as ChartJS, RadialLinearScale, PointElement, LineElement, Filler,
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
 
 export default function Skills() {
-  // Radar chart data
+  // Define skills with their levels first to ensure consistency
+  const mainSkills = [
+    { name: "Python", level: 90 },
+    { name: "JavaScript", level: 85 },
+    { name: "React.js", level: 85 },
+    { name: "Node.js", level: 80 },
+    { name: "TypeScript", level: 75 },
+    { name: "HTML/CSS", level: 80 }
+  ];
+  
+  // Radar chart data derived from the skills array for consistency
   const radarData = {
-    labels: ['Python', 'JavaScript', 'React', 'Node.js', 'TypeScript', 'HTML/CSS'],
+    labels: mainSkills.map(skill => skill.name),
     datasets: [
       {
         label: 'Skill Level',
-        data: [90, 85, 85, 80, 75, 80],
+        data: mainSkills.map(skill => skill.level),
         backgroundColor: 'rgba(18, 214, 64, 0.2)',
         borderColor: 'rgba(18, 214, 64, 1)',
         borderWidth: 2,
+        pointBackgroundColor: 'rgba(18, 214, 64, 1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(18, 214, 64, 1)',
       },
     ],
   };
@@ -36,12 +50,14 @@ export default function Skills() {
           color: '#fff',
           font: {
             size: 14,
+            weight: 'bold'
           },
         },
         ticks: {
           display: false,
           beginAtZero: true,
           max: 100,
+          stepSize: 20,
         },
       },
     },
@@ -49,6 +65,21 @@ export default function Skills() {
       legend: {
         display: false,
       },
+      tooltip: {
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        titleFont: {
+          size: 14,
+          weight: 'bold'
+        },
+        bodyFont: {
+          size: 14
+        },
+        callbacks: {
+          label: function(context) {
+            return `Proficiency: ${context.raw}%`;
+          }
+        }
+      }
     },
     maintainAspectRatio: false,
   };

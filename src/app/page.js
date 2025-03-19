@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
@@ -14,7 +15,7 @@ export default function Home() {
         <Hero />
       </section>
 
-      <section 
+      <motion.section 
         id="about"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -22,19 +23,19 @@ export default function Home() {
         viewport={{ once: true }}
       >
         <About />
-      </section>
+      </motion.section>
 
-      <section 
+      <motion.section 
         id="projects"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+        viewport={{ once: true }} 
       >
         <Projects />
-      </section>
+      </motion.section>
 
-      <section 
+      <motion.section 
         id="skills"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -42,9 +43,9 @@ export default function Home() {
         viewport={{ once: true }}
       >
         <Skills />
-      </section>
+      </motion.section>
 
-      <section 
+      <motion.section 
         id="experience"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -52,9 +53,9 @@ export default function Home() {
         viewport={{ once: true }}
       >
         <Experience />
-      </section>
+      </motion.section>
 
-      <section 
+      <motion.section 
         id="contact"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -62,7 +63,7 @@ export default function Home() {
         viewport={{ once: true }}
       >
         <Contact />
-      </section>
+      </motion.section>
 
     </>
   )

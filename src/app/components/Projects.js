@@ -2,7 +2,6 @@
 import React from 'react';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 
 export default function Projects() {
@@ -13,44 +12,40 @@ export default function Projects() {
       id: 1,
       title: "Password Security Assessment Tool",
       description: "A comprehensive cybersecurity application that helps users manage and assess the security of their passwords and online accounts.",
-      image: "/images/projects/password-tool.jpg",
+      demoUrl: "https://password-manager-eight-lovat.vercel.app",
       tags: ["security", "web", "python"],
       tech: ["Python", "FastAPI", "Next.js", "React", "TypeScript"],
       github: "https://github.com/SwayamDani/password-security",
-      demo: "https://password-security.vercel.app",
       featured: true
     },
     {
       id: 2,
       title: "StyleAI - AI Fashion Assistant",
       description: "AI-powered personal fashion assistant that helps users create outfit recommendations using artificial intelligence.",
-      image: "/images/projects/styleai.jpg",
+      demoUrl: "https://outfit-creator-one.vercel.app/",
       tags: ["ai", "web"],
       tech: ["React.js", "Node.js", "Firebase", "OpenAI API", "DALL-E"],
       github: "https://github.com/SwayamDani/styleai",
-      demo: "https://outfit-creator-one.vercel.app/",
       featured: true
     },
     {
       id: 3,
       title: "DR.ai - Citrus Hack Project",
       description: "An innovative medical information web application developed during the 36-hour UCR Citrus Hack competition.",
-      image: "/images/projects/drai.jpg",
-      tags: ["ai", "hackathon"],
+      demoUrl: "https://web-production-4a51.up.railway.app/",
+      tags: ["ai", "web"],
       tech: ["Python", "Streamlit", "OpenAI API", "HTML", "CSS"],
       github: "https://github.com/SwayamDani/dr-ai",
-      demo: "https://web-production-4a51.up.railway.app/",
       featured: true
     },
     {
       id: 4,
       title: "Travel Itinerary Producer",
       description: "An intelligent travel planning application that generates personalized itineraries based on user preferences.",
-      image: "/images/projects/travel-itinerary.jpg",
+      demoUrl: "https://itinerary-generator-chi.vercel.app/",
       tags: ["ai", "web"],
       tech: ["OpenAI API", "JavaScript", "Node.js", "CSS", "HTML"],
       github: "https://github.com/SwayamDani/travel-planner",
-      demo: "https://itinerary-generator-chi.vercel.app/",
       featured: false
     }
   ];
@@ -123,16 +118,6 @@ export default function Projects() {
           >
             Web
           </button>
-          <button
-            onClick={() => setFilter('hackathon')}
-            className={`px-6 py-2 rounded-full ${
-              filter === 'hackathon' 
-                ? 'bg-green-500 text-white' 
-                : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200'
-            } hover:bg-green-500 hover:text-white transition duration-300`}
-          >
-            Hackathon
-          </button>
         </div>
       </div>
 
@@ -149,33 +134,17 @@ export default function Projects() {
             className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
             variants={item}
           >
-            <div className="relative h-64 w-full">
-              <Image 
-                src={project.image} 
-                alt={project.title} 
-                layout="fill" 
-                objectFit="cover"
-                className="transition-transform duration-500 hover:scale-105"
+            <div className="relative w-full h-64 overflow-hidden">
+              <iframe 
+                src={project.demoUrl} 
+                title={project.title}
+                className="w-full h-full border-0"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                sandbox="allow-scripts allow-same-origin"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <div className="flex space-x-4">
-                  <a 
-                    href={project.github} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="p-3 bg-white rounded-full text-gray-900 hover:bg-green-500 hover:text-white transition duration-300"
-                  >
-                    <FiGithub size={20} />
-                  </a>
-                  <a 
-                    href={project.demo} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="p-3 bg-white rounded-full text-gray-900 hover:bg-green-500 hover:text-white transition duration-300"
-                  >
-                    <FiExternalLink size={20} />
-                  </a>
-                </div>
+              <div className="absolute inset-0 bg-black bg-opacity-10 hover:bg-opacity-0 transition-opacity duration-300 pointer-events-none">
+                {/* Overlay for better visibility of iframe content */}
               </div>
             </div>
             <div className="p-6">
@@ -201,7 +170,7 @@ export default function Projects() {
                   <FiGithub className="mr-2" /> Code
                 </a>
                 <a 
-                  href={project.demo} 
+                  href={project.demoUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-green-500 hover:text-green-600 flex items-center"
