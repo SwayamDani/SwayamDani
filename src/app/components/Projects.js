@@ -50,7 +50,7 @@ export default function Projects() {
       tags: ["ai", "web"],
       tech: ["OpenAI API", "JavaScript", "Node.js", "CSS", "HTML"],
       github: "https://github.com/SwayamDani/travel-planner",
-      demo: "https://travel-itinerary.vercel.app",
+      demo: "https://itinerary-generator-chi.vercel.app/",
       featured: false
     }
   ];
