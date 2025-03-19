@@ -100,7 +100,7 @@ export default function Navbar({ darkMode }) {
               ))}
               
               <a 
-                href="https://drive.google.com/file/d/YOUR_UPDATED_RESUME_LINK/view?usp=sharing" 
+                href="https://drive.google.com/file/d/1OGRKFoXzmqF6TTssRr_DY0AosRBd_lEl/view?usp=sharing" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full transition-colors duration-300"
@@ -150,7 +150,7 @@ export default function Navbar({ darkMode }) {
             ))}
             
             <a 
-              href="https://drive.google.com/file/d/YOUR_UPDATED_RESUME_LINK/view?usp=sharing" 
+              href="https://drive.google.com/file/d/1OGRKFoXzmqF6TTssRr_DY0AosRBd_lEl/view?usp=sharing" 
               target="_blank" 
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
