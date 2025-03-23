@@ -60,6 +60,20 @@ export default function Projects() {
     }
   ];
 
+  if (typeof window !== 'undefined') {
+    // Code that accesses the document object
+    document.addEventListener("DOMContentLoaded", function() {
+      const iframes = document.querySelectorAll("iframe");
+  
+      iframes.forEach(iframe => {
+        iframe.addEventListener("load", function(event) {
+          event.preventDefault();
+          window.scrollTo(0, 0); // Scroll to the top of the page
+        });
+      });
+    });
+  }
+
   const filteredProjects = filter === 'all' 
     ? projects 
     : projects.filter(project => project.tags.includes(filter));
