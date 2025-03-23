@@ -3,11 +3,17 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar({ darkMode }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const pathname = usePathname();
+  
+  // Check if we're on the blog page
+  const isBlogPage = pathname.startsWith('/blog');
   
   // Handle scroll events
   useEffect(() => {
@@ -22,19 +28,22 @@ export default function Navbar({ darkMode }) {
         setScrolled(false);
       }
       
-      // Find active section based on scroll position
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(sections[i]);
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i]);
-          break;
+      // Only track section scrolling on the homepage
+      if (!isBlogPage) {
+        // Find active section based on scroll position
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const section = document.getElementById(sections[i]);
+          if (section && section.offsetTop <= scrollPosition) {
+            setActiveSection(sections[i]);
+            break;
+          }
         }
       }
     };
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isBlogPage]);
   
   // Close mobile menu when clicking outside
   useEffect(() => {
@@ -50,12 +59,14 @@ export default function Navbar({ darkMode }) {
   
   // Navigation items
   const navItems = [
-    { id: 'hero', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'hero', label: 'Home', path: '/' },
+    { id: 'about', label: 'About', path: '/#about' },
+    { id: 'projects', label: 'Projects', path: '/#projects' },
+    { id: 'skills', label: 'Skills', path: '/#skills' },
+    { id: 'experience', label: 'Experience', path: '/#experience' },
+    { id: 'contact', label: 'Contact', path: '/#contact' },
+    { id: 'blog', label: 'Blog', path: '/blog' },
+    { id: 'tutorials', label: 'Tutorials', path: '/tutorials' },
   ];
 
   return (
@@ -67,36 +78,36 @@ export default function Navbar({ darkMode }) {
       }`}>
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
-            <motion.a 
-              href="#hero"
+            <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="text-2xl font-bold"
             >
-              SD
-            </motion.a>
+              <Link href="/" className="text-2xl font-bold">
+                SD
+              </Link>
+            </motion.div>
             
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-8">
               {navItems.map((item) => (
-                <a 
+                <Link 
                   key={item.id}
-                  href={`#${item.id}`}
+                  href={item.path}
                   className={`relative font-medium transition-colors duration-300 ${
-                    activeSection === item.id
+                    (isBlogPage && item.id === 'blog') || (!isBlogPage && activeSection === item.id)
                       ? 'text-green-500'
                       : 'text-gray-700 dark:text-gray-300 hover:text-green-500 dark:hover:text-green-400'
                   }`}
                 >
                   {item.label}
-                  {activeSection === item.id && (
+                  {((isBlogPage && item.id === 'blog') || (!isBlogPage && activeSection === item.id)) && (
                     <motion.div 
                       className="absolute -bottom-1 left-0 h-0.5 bg-green-500 w-full"
                       layoutId="navIndicator"
                     />
                   )}
-                </a>
+                </Link>
               ))}
               
               <a 
@@ -135,18 +146,18 @@ export default function Navbar({ darkMode }) {
         >
           <div className="bg-white dark:bg-gray-800 shadow-xl rounded-b-lg mx-4 mt-2 py-4">
             {navItems.map((item) => (
-              <a 
+              <Link
                 key={item.id}
-                href={`#${item.id}`}
+                href={item.path}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`block py-3 px-6 ${
-                  activeSection === item.id
+                  (isBlogPage && item.id === 'blog') || (!isBlogPage && activeSection === item.id)
                     ? 'bg-green-50 dark:bg-green-900 text-green-500'
                     : 'hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
             
             <a 
