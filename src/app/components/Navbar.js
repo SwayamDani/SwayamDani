@@ -12,7 +12,7 @@ export default function Navbar({ darkMode }) {
   // Handle scroll events
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'about', 'projects', 'skills', 'experience', 'contact'];
+      const sections = ['hero', 'about', 'projects', 'skills', 'experience', 'blog', 'contact'];
       const scrollPosition = window.scrollY + 200; // Adding offset for better UX
       
       // Update navbar style when scrolled
@@ -48,7 +48,7 @@ export default function Navbar({ darkMode }) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [mobileMenuOpen]);
   
-  // Navigation items
+  // Navigation items - keeping blog separate
   const navItems = [
     { id: 'hero', label: 'Home' },
     { id: 'about', label: 'About' },
@@ -82,22 +82,22 @@ export default function Navbar({ darkMode }) {
               {navItems.map((item) => (
                 <a 
                   key={item.id}
-                  href={`#${item.id}`}
-                  className={`relative font-medium transition-colors duration-300 ${
-                    activeSection === item.id
-                      ? 'text-green-500'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-green-500 dark:hover:text-green-400'
+                  href={`/#${item.id}`}
+                  className={`relative font-medium transition-colors duration-300 text-gray-700 dark:text-gray-300 hover:text-green-500 dark:hover:text-green-400'
                   }`}
                 >
                   {item.label}
-                  {activeSection === item.id && (
-                    <motion.div 
-                      className="absolute -bottom-1 left-0 h-0.5 bg-green-500 w-full"
-                      layoutId="navIndicator"
-                    />
-                  )}
                 </a>
               ))}
+              
+              {/* Blog link - separate from navItems */}
+              <a 
+                href="/blog"
+                className={`relative font-medium transition-colors duration-300 text-gray-700 dark:text-gray-300 hover:text-green-500 dark:hover:text-green-400'
+                }`}
+              >
+                Blog
+              </a>
               
               <a 
                 href="https://drive.google.com/file/d/1OGRKFoXzmqF6TTssRr_DY0AosRBd_lEl/view?usp=sharing" 
@@ -137,7 +137,7 @@ export default function Navbar({ darkMode }) {
             {navItems.map((item) => (
               <a 
                 key={item.id}
-                href={`#${item.id}`}
+                href={`/#${item.id}`}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`block py-3 px-6 ${
                   activeSection === item.id
@@ -148,6 +148,19 @@ export default function Navbar({ darkMode }) {
                 {item.label}
               </a>
             ))}
+            
+            {/* Blog link - separate from navItems */}
+            <a 
+              href="/blog"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`block py-3 px-6 ${
+                activeSection === 'blog'
+                  ? 'bg-green-50 dark:bg-green-900 text-green-500'
+                  : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+              }`}
+            >
+              Blog
+            </a>
             
             <a 
               href="https://drive.google.com/file/d/1OGRKFoXzmqF6TTssRr_DY0AosRBd_lEl/view?usp=sharing" 
