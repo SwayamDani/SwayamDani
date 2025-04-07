@@ -25,6 +25,63 @@
 }
 
 /* Custom classes */
+.markdown-content {
+  @apply text-gray-900 dark:text-gray-100 leading-relaxed;
+}
+
+.markdown-content h1 {
+  @apply text-4xl font-bold mt-10 mb-6 text-green-600 dark:text-green-400 pb-2 border-b border-gray-200 dark:border-gray-700;
+}
+
+.markdown-content h2 {
+  @apply text-3xl font-bold mt-12 mb-6 text-gray-800 dark:text-gray-200 pb-2 border-b border-gray-200 dark:border-gray-700;
+}
+
+.markdown-content h3 {
+  @apply text-2xl font-bold mt-8 mb-4 text-gray-800 dark:text-gray-200;
+}
+
+.markdown-content h4 {
+  @apply text-xl font-bold mt-6 mb-4 text-gray-800 dark:text-gray-200;
+}
+
+.markdown-content p {
+  @apply mb-6 text-lg leading-relaxed;
+}
+
+.markdown-content ul, .markdown-content ol {
+  @apply mb-8 pl-6 space-y-3;
+}
+
+.markdown-content ul {
+  @apply list-disc;
+}
+
+.markdown-content ol {
+  @apply list-decimal;
+}
+
+.markdown-content li {
+  @apply text-lg leading-relaxed;
+}
+
+.markdown-content li p {
+  @apply mb-2;
+}
+
+.markdown-content blockquote {
+  @apply border-l-4 border-green-500 pl-6 italic my-8 py-2 text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 rounded-r-lg;
+}
+
+.markdown-content code {
+  @apply bg-gray-100 dark:bg-gray-800 text-red-500 dark:text-red-400 px-2 py-1 rounded text-sm font-mono;
+}
+
+.markdown-content pre {
+  @apply bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto my-6;
+}
+
+
 .tech-icon {
   @apply flex flex-col items-center justify-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md text-center;
 }

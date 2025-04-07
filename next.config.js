@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['images.unsplash.com'], // Add other domains if needed
+    domains: ['images.unsplash.com', 'cdn.sanity.io'], // Add other domains if needed
   },
   webpack: (config) => {
     // Add support for importing shader files with Three.js

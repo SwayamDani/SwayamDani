@@ -11,16 +11,27 @@ import BlogSection from './components/BlogSection'
 
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Fetch blog posts for the homepage
     async function fetchBlogPosts() {
       try {
+        setIsLoading(true);
         const response = await fetch('/api/blog/posts');
+        
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+        
         const data = await response.json();
-        setBlogPosts(data.posts.slice(0, 3)); // Get the first 3 posts
+        setBlogPosts(data.posts);
       } catch (error) {
         console.error('Error fetching blog posts:', error);
+        // Set to empty array on error
+        setBlogPosts([]);
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -50,19 +61,6 @@ export default function Home() {
         transition={{ duration: 0.6 }}
         viewport={{ once: true }} 
       >
-
-      {blogPosts.length > 0 && (
-        <motion.section 
-          id="blog"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <BlogSection posts={blogPosts} />
-        </motion.section>
-      )}
-
         <Projects />
       </motion.section>
 
@@ -86,7 +84,17 @@ export default function Home() {
         <Experience />
       </motion.section>
 
-      
+      {!isLoading && blogPosts.length > 0 && (
+        <motion.section 
+          id="blog"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <BlogSection posts={blogPosts} />
+        </motion.section>
+      )}
 
       <motion.section 
         id="contact"
