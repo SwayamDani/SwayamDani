@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Cursor from './components/Cursor'
 import ThemeToggle from './components/ThemeToggle'
+import Script from 'next/script'
 
 export default function RootLayout({ children }) {
   const [darkMode, setDarkMode] = useState(true)
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={darkMode ? 'dark' : ''}>
       <head>
         <title>Swayam Dani | Portfolio</title>
+        <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b2c5fd0d37c5431aaf83cb93e21aa3c7"}'></script>
         <meta name="description" content="Portfolio of Swayam Dani - Computer Science student specializing in AI, web development, and cybersecurity" />
       </head>
       <body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen transition-colors duration-300">
