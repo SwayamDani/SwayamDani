@@ -146,7 +146,7 @@ export default function BlogPost() {
           href="/blog"
           className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-flex items-center"
         >
-          <FiArrowLeft className="mr-2" /> Back to Blog
+          <FiArrowLeft className="mr-2" /> Back to Blogs
         </Link>
       </div>
     );
@@ -174,14 +174,7 @@ export default function BlogPost() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="mb-8">
-          <Link 
-            href="/blog"
-            className="inline-flex items-center text-green-500 hover:text-green-600 font-medium"
-          >
-            <FiArrowLeft className="mr-2" /> Back to Blog
-          </Link>
-        </div>
+        {/* Removed the "Back to Blog" link from here */}
 
         <div className="max-w-4xl mx-auto">
           <div className="mb-6">
@@ -305,6 +298,16 @@ export default function BlogPost() {
               </div>
             </div>
           )}
+          
+          {/* Added "Back to Blogs" button at the end of the content */}
+          <div className="mt-12 flex justify-center">
+            <Link 
+              href="/blog"
+              className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-flex items-center"
+            >
+              <FiArrowLeft className="mr-2" /> Back to Blogs
+            </Link>
+          </div>
         </div>
       </motion.div>
     </div>
