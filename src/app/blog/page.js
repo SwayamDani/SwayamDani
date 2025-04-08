@@ -71,7 +71,7 @@ export default function BlogPage() {
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Blog</h1>
           <p className="text-xl text-gray-600 dark:text-gray-400">
-            Insights and tutorials on technology, cybersecurity, and development
+          Where computer science meets curiosity — exploring code, systems, and student life.
           </p>
         </div>
         
