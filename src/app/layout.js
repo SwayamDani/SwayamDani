@@ -34,7 +34,13 @@ export default function RootLayout({ children }) {
     <html lang="en" className={darkMode ? 'dark' : ''}>
       <head>
         <title>Swayam Dani | Portfolio</title>
-        <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b2c5fd0d37c5431aaf83cb93e21aa3c7"}'></script>
+        <Script
+          id="cloudflare-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b2c5fd0d37c5431aaf83cb93e21aa3c7"}'></script><!-- End Cloudflare Web Analytics -->`
+          }}
+        />
         <meta name="description" content="Portfolio of Swayam Dani - Computer Science student specializing in AI, web development, and cybersecurity" />
       </head>
       <body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen transition-colors duration-300">
