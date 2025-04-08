@@ -16,6 +16,16 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+
+  async redirects() {
+    return [
+      {
+        source: '/blog/1',
+        destination: '/blog/why-every-cs-student-should-build-a-personal-website', // use your actual slug here
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
