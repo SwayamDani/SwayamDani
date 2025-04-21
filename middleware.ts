@@ -32,19 +32,18 @@ export function middleware(req: NextRequest) {
   // For debugging - inspect request hostname and path
   console.log('Middleware running for:', req.nextUrl.pathname);
   console.log('Request hostname:', req.headers.get('host'));
+  console.log('Request URL:', req.url);
   
   // Handle blog route restriction to only localhost:3000
   if (req.nextUrl.pathname.startsWith('/blog')) {
     const hostname = req.headers.get('host');
     
-    // Only allow localhost:3000, block all other domains including localhost with other ports
-    if (hostname !== 'localhost:3000') {
+    // More robust check - ensure it's exactly localhost:3000
+    if (hostname !== 'localhost:3000' && !req.url.includes('localhost:3000')) {
       console.log(`Blocking access to ${req.nextUrl.pathname} from ${hostname}`);
       
-      // Return 403 Forbidden response with a clear message
-      return new Response('Access Denied: This page is only accessible from localhost:3000', {
-        status: 403,
-      });
+      // Redirect to the homepage instead of showing the blog
+      return NextResponse.redirect(new URL('/not_found', req.url));
     }
   }
   
