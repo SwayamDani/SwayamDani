@@ -1,7 +1,7 @@
-// middleware.js
 import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
 
-const basicAuth = (req) => {
+const basicAuth = (req: NextRequest) => {
   const auth = req.headers.get('authorization')
   
   if (!auth) {
@@ -28,7 +28,7 @@ const basicAuth = (req) => {
   return NextResponse.next()
 }
 
-export default function middleware(req) {
+export function middleware(req: NextRequest) {
   // For debugging - inspect request hostname and path
   console.log('Middleware running for:', req.nextUrl.pathname);
   console.log('Request hostname:', req.headers.get('host'));
