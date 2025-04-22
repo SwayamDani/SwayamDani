@@ -9,14 +9,14 @@ export async function GET(request) {
   // Log for debugging
   console.log('API Request host:', host);
 
-  // Only serve blog data if accessed from localhost:3000
-  if (host !== 'localhost:3000') {
-    console.log('Showing maintenance message for API access from:', host);
-    return NextResponse.json({ 
-      maintenance: true,
-      message: 'The blog is currently under maintenance. Please check back later.' 
-    }, { status: 200 });
-  }
+  // umcomment the following lines to enable maintenance mode for non-localhost requests
+  // if (host !== 'localhost:3000') {
+  //   console.log('Showing maintenance message for API access from:', host);
+  //   return NextResponse.json({ 
+  //     maintenance: true,
+  //     message: 'The blog is currently under maintenance. Please check back later.' 
+  //   }, { status: 200 });
+  // }
 
   try {
     // Query for all blog posts, ordered by publishedAt date in descending order
