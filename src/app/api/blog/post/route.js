@@ -2,7 +2,22 @@
 import { NextResponse } from 'next/server';
 import sanityClient from '@/lib/sanity';
 
-export async function GET() {
+export async function GET(request) {
+  // Check if the request is coming from localhost:3000
+  const host = request.headers.get('host');
+  
+  // Log for debugging
+  console.log('API Request host:', host);
+
+  // Only serve blog data if accessed from localhost:3000
+  if (host !== 'localhost:3000') {
+    console.log('Showing maintenance message for API access from:', host);
+    return NextResponse.json({ 
+      maintenance: true,
+      message: 'The blog is currently under maintenance. Please check back later.' 
+    }, { status: 200 });
+  }
+
   try {
     // Query for all blog posts, ordered by publishedAt date in descending order
     const posts = await sanityClient.fetch(`
