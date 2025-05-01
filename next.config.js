@@ -21,9 +21,15 @@ const nextConfig = {
     return [
       {
         source: '/blog/1',
-        destination: '/blog/why-every-cs-student-should-build-a-personal-website', // use your actual slug here
+        destination: '/blog/why-every-cs-student-should-build-a-personal-website', 
         permanent: true,
       },
+      {
+        source: '/blog/2',
+        destination: '/blog/behind-the-scenes-creating-a-password-security-assessment-tool', 
+        permanent: true,
+      },
+      
     ];
   },
 };
