@@ -29,7 +29,17 @@ const nextConfig = {
         destination: '/blog/behind-the-scenes-creating-a-password-security-assessment-tool', 
         permanent: true,
       },
-      
+      // LinkedIn-specific redirects with UTM parameters
+      {
+        source: '/li/blog1',
+        destination: '/blog/why-every-cs-student-should-build-a-personal-website?utm_source=linkedin&utm_medium=social&utm_campaign=blog_share',
+        permanent: false,
+      },
+      {
+        source: '/li/blog2',
+        destination: '/blog/behind-the-scenes-creating-a-password-security-assessment-tool?utm_source=linkedin&utm_medium=social&utm_campaign=blog_share',
+        permanent: false,
+      },
     ];
   },
 };
