@@ -29,7 +29,6 @@ const nextConfig = {
         destination: '/blog/behind-the-scenes-creating-a-password-security-assessment-tool', 
         permanent: true,
       },
-      // LinkedIn-specific redirects with UTM parameters
       {
         source: '/li/blog1',
         destination: '/blog/why-every-cs-student-should-build-a-personal-website?utm_source=linkedin&utm_medium=social&utm_campaign=blog_share',
@@ -38,6 +37,41 @@ const nextConfig = {
       {
         source: '/li/blog2',
         destination: '/blog/behind-the-scenes-creating-a-password-security-assessment-tool?utm_source=linkedin&utm_medium=social&utm_campaign=blog_share',
+        permanent: false,
+      },
+      {
+        source: '/ig/blog1',
+        destination: '/blog/why-every-cs-student-should-build-a-personal-website?utm_source=instagram&utm_medium=social&utm_campaign=blog_share',
+        permanent: false,
+      },
+      {
+        source: '/ig/blog2',
+        destination: '/blog/behind-the-scenes-creating-a-password-security-assessment-tool?utm_source=instagram&utm_medium=social&utm_campaign=blog_share',
+        permanent: false,
+      },
+      {
+        source: '/x/blog1',
+        destination: '/blog/why-every-cs-student-should-build-a-personal-website?utm_source=x&utm_medium=social&utm_campaign=blog_share',
+        permanent: false,
+      },
+      {
+        source: '/x/blog2',
+        destination: '/blog/behind-the-scenes-creating-a-password-security-assessment-tool?utm_source=x&utm_medium=social&utm_campaign=blog_share',
+        permanent: false,
+      },
+      {
+        source: '/li/blog',
+        destination: '/blog?utm_source=linkedin&utm_medium=social&utm_campaign=blog_share',
+        permanent: false,
+      },
+      {
+        source: '/ig/blog',
+        destination: '/blog?utm_source=instagram&utm_medium=social&utm_campaign=blog_share',
+        permanent: false,
+      },
+      {
+        source: '/x/blog',
+        destination: '/blog?utm_source=x&utm_medium=social&utm_campaign=blog_share',
         permanent: false,
       },
     ];
