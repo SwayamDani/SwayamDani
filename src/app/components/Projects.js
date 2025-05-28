@@ -15,7 +15,7 @@ export default function Projects() {
       demoUrl: "https://password-manager-eight-lovat.vercel.app",
       tags: ["security", "web", "python"],
       tech: ["Python", "FastAPI", "Next.js", "React", "TypeScript"],
-      github: "https://github.com/SwayamDani/password-security",
+      github: "https://github.com/SwayamDani/passwordManager",
       featured: true
     },
     {
@@ -25,7 +25,7 @@ export default function Projects() {
       demoUrl: "https://outfit-creator-one.vercel.app/",
       tags: ["ai", "web"],
       tech: ["React.js", "Node.js", "Firebase", "OpenAI API", "DALL-E"],
-      github: "https://github.com/SwayamDani/styleai",
+      github: "https://github.com/SwayamDani/outfit_creator",
       featured: true
     },
     {
@@ -35,7 +35,7 @@ export default function Projects() {
       demoUrl: "https://web-production-4a51.up.railway.app/",
       tags: ["ai", "web"],
       tech: ["Python", "Streamlit", "OpenAI API", "HTML", "CSS"],
-      github: "https://github.com/SwayamDani/dr-ai",
+      github: "https://github.com/SwayamDani/DR.ai",
       featured: true
     },
     {
@@ -45,7 +45,7 @@ export default function Projects() {
       demoUrl: "https://itinerary-generator-chi.vercel.app/",
       tags: ["ai", "web"],
       tech: ["OpenAI API", "JavaScript", "Node.js", "CSS", "HTML"],
-      github: "https://github.com/SwayamDani/travel-planner",
+      github: "https://github.com/SwayamDani/itinerary_generator",
       featured: false
     },
     {
