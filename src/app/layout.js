@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react'
 import './globals.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import Cursor from './components/Cursor'
 import ThemeToggle from './components/ThemeToggle'
 import Script from 'next/script'
 
@@ -43,7 +42,6 @@ export default function RootLayout({ children }) {
         <meta name="description" content="Portfolio of Swayam Dani - Computer Science student specializing in AI, web development, and cybersecurity" />
       </head>
       <body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen transition-colors duration-300">
-        <Cursor />
         <ThemeToggle darkMode={darkMode} toggleTheme={toggleTheme} />
         <Navbar darkMode={darkMode} />
         <main>{children}</main>

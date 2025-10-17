@@ -13,9 +13,9 @@ export default function Skills() {
     { name: "Python", level: 90 },
     { name: "JavaScript", level: 85 },
     { name: "React.js", level: 85 },
-    { name: "Node.js", level: 80 },
-    { name: "TypeScript", level: 75 },
-    { name: "HTML/CSS", level: 80 }
+    { name: "AI/ML", level: 85 },
+    { name: "FastAPI", level: 80 },
+    { name: "Node.js", level: 80 }
   ];
   
   // Radar chart data derived from the skills array for consistency
@@ -87,36 +87,47 @@ export default function Skills() {
   // Technical skills data
   const technicalSkills = [
     {
-      category: "Languages",
+      category: "Programming Languages",
       skills: [
         { name: "Python", level: 90 },
         { name: "JavaScript", level: 85 },
-        { name: "TypeScript", level: 75 },
+        { name: "TypeScript", level: 80 },
         { name: "Java", level: 75 },
-        { name: "C/C++", level: 70 },
-        { name: "HTML/CSS", level: 80 },
+        { name: "C++", level: 75 },
+        { name: "SQL", level: 80 },
+      ]
+    },
+    {
+      category: "AI/ML & Data Science",
+      skills: [
+        { name: "TensorFlow", level: 80 },
+        { name: "PyTorch", level: 80 },
+        { name: "NumPy", level: 85 },
+        { name: "pandas", level: 85 },
+        { name: "scikit-learn", level: 80 },
+        { name: "Hugging Face", level: 75 },
       ]
     },
     {
       category: "Frameworks & Libraries",
       skills: [
         { name: "React.js", level: 85 },
+        { name: "Next.js", level: 85 },
         { name: "Node.js", level: 80 },
-        { name: "Next.js", level: 75 },
-        { name: "FastAPI", level: 70 },
-        { name: "Material UI", level: 80 },
+        { name: "FastAPI", level: 85 },
         { name: "Streamlit", level: 75 },
+        { name: "Firebase", level: 80 },
       ]
     },
     {
-      category: "Tools & Technologies",
+      category: "Cloud & DevOps",
       skills: [
+        { name: "Google Cloud Platform", level: 75 },
+        { name: "Vercel", level: 85 },
+        { name: "Heroku", level: 70 },
         { name: "Git", level: 85 },
-        { name: "Firebase", level: 80 },
-        { name: "Google Cloud", level: 70 },
-        { name: "OpenAI API", level: 85 },
-        { name: "JWT", level: 75 },
-        { name: "Figma", level: 70 },
+        { name: "Redis", level: 75 },
+        { name: "MongoDB", level: 80 },
       ]
     }
   ];
@@ -183,12 +194,12 @@ export default function Skills() {
         <h3 className="text-2xl font-bold mb-8 text-center">Specialized Areas</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {[
+            { name: "AI/ML Engineering", icon: "fas fa-brain" },
             { name: "Full-Stack Development", icon: "fas fa-laptop-code" },
-            { name: "AI Integration", icon: "fas fa-brain" },
             { name: "Cybersecurity", icon: "fas fa-shield-alt" },
-            { name: "Responsive Design", icon: "fas fa-mobile-alt" },
-            { name: "Project Management", icon: "fas fa-project-diagram" },
-            { name: "Agile Methodologies", icon: "fas fa-code-branch" }
+            { name: "Cloud Computing", icon: "fas fa-cloud" },
+            { name: "API Development", icon: "fas fa-code-branch" },
+            { name: "Data Analytics", icon: "fas fa-chart-line" }
           ].map((specialty, index) => (
             <div 
               key={index} 

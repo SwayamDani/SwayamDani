@@ -140,14 +140,16 @@ export default function BlogPost() {
   if (error) {
     return (
       <div className="container mx-auto py-32 px-4 flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-3xl font-bold text-red-500 mb-4">Error</h1>
-        <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">{error}</p>
-        <Link 
-          href="/blog"
-          className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-flex items-center"
-        >
-          <FiArrowLeft className="mr-2" /> Back to Blogs
-        </Link>
+        <div className="rounded-3xl bg-white/60 dark:bg-gray-900/60 shadow-2xl backdrop-blur-md border-2 border-gray-200/40 dark:border-gray-700/40 p-12 text-center">
+          <h1 className="text-3xl font-bold text-red-500 mb-4">Error</h1>
+          <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">{error}</p>
+          <Link 
+            href="/blog"
+            className="inline-flex items-center font-bold bg-gradient-to-r from-green-400 to-blue-500 text-white px-6 py-3 rounded-full shadow-lg hover:from-blue-500 hover:to-green-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-400"
+          >
+            <FiArrowLeft className="mr-2" /> Back to Blogs
+          </Link>
+        </div>
       </div>
     );
   }
@@ -155,145 +157,153 @@ export default function BlogPost() {
   if (!post) {
     return (
       <div className="container mx-auto py-32 px-4 flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-3xl font-bold mb-4">Post Not Found</h1>
-        <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">The blog post you're looking for doesn't exist.</p>
-        <Link 
-          href="/blog"
-          className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-flex items-center"
-        >
-          <FiArrowLeft className="mr-2" /> Back to Blog
-        </Link>
+        <div className="rounded-3xl bg-white/60 dark:bg-gray-900/60 shadow-2xl backdrop-blur-md border-2 border-gray-200/40 dark:border-gray-700/40 p-12 text-center">
+          <h1 className="text-3xl font-bold mb-4">Post Not Found</h1>
+          <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">The blog post you're looking for doesn't exist.</p>
+          <Link 
+            href="/blog"
+            className="inline-flex items-center font-bold bg-gradient-to-r from-green-400 to-blue-500 text-white px-6 py-3 rounded-full shadow-lg hover:from-blue-500 hover:to-green-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-400"
+          >
+            <FiArrowLeft className="mr-2" /> Back to Blog
+          </Link>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto py-32 px-4">
+    <div className="container mx-auto py-32 px-4 relative">
+      {/* Gradient background accent */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute left-1/2 top-0 w-2/3 h-96 bg-gradient-to-br from-green-200/40 via-blue-200/30 to-purple-200/20 rounded-full blur-3xl -translate-x-1/2"></div>
+      </div>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Removed the "Back to Blog" link from here */}
-
         <div className="max-w-4xl mx-auto">
-          <div className="mb-6">
-            <div className="flex items-center gap-2 mb-4">
-              <span className={`px-3 py-1 rounded-full text-xs ${
-                post.category?.toLowerCase() === 'security' 
-                  ? 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200' 
-                  : post.category?.toLowerCase() === 'ai'
-                  ? 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200'
-                  : 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'
-              }`}>
-                <FiTag className="inline mr-1" />
-                {post.category || 'General'}
-              </span>
-              
-              <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                <FiCalendar className="mr-1" />
-                <span className="mr-4">{formatDate(post.date)}</span>
-              </div>
-              
-              <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                <FiClock className="mr-1" />
-                <span>{post.readTime}</span>
-              </div>
-            </div>
-            
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">{post.title}</h1>
-            
-            {post.author && (
-              <div className="flex items-center mb-8">
-                {post.author.image && (
-                  <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
-                    <Image
-                      src={urlFor(post.author.image).url()}
-                      alt={post.author.name}
-                      width={48}
-                      height={48}
-                      className="object-cover"
-                    />
-                  </div>
-                )}
-                <div>
-                  <p className="font-medium">{post.author.name}</p>
-                  {post.author.bio && <p className="text-sm text-gray-500 dark:text-gray-400">{post.author.bio}</p>}
+          <div className="rounded-3xl bg-white/60 dark:bg-gray-900/60 shadow-2xl backdrop-blur-md border-2 border-gray-200/40 dark:border-gray-700/40 p-8 md:p-12 mb-8">
+            <div className="mb-6">
+              <div className="flex items-center gap-2 mb-4 flex-wrap">
+                <span className={`px-3 py-1 rounded-full text-xs font-semibold shadow-sm backdrop-blur-sm ${
+                  post.category?.toLowerCase() === 'security' 
+                    ? 'bg-red-100/80 dark:bg-red-900/80 text-red-800 dark:text-red-200' 
+                    : post.category?.toLowerCase() === 'ai'
+                    ? 'bg-purple-100/80 dark:bg-purple-900/80 text-purple-800 dark:text-purple-200'
+                    : 'bg-blue-100/80 dark:bg-blue-900/80 text-blue-800 dark:text-blue-200'
+                }`}>
+                  <FiTag className="inline mr-1" />
+                  {post.category || 'General'}
+                </span>
+                
+                <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                  <FiCalendar className="mr-1" />
+                  <span className="mr-4">{formatDate(post.date)}</span>
+                </div>
+                
+                <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                  <FiClock className="mr-1" />
+                  <span>{post.readTime}</span>
                 </div>
               </div>
-            )}
-          </div>
-          
-          {post.mainImage && (
-            <div className="relative w-full h-96 md:h-[500px] mb-8 rounded-xl overflow-hidden">
-              <Image 
-                src={urlFor(post.mainImage).url()}
-                alt={post.title}
-                fill
-                priority
-                className="object-cover"
-              />
+              
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 bg-gradient-to-r from-green-400 via-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">{post.title}</h1>
+              
+              {post.author && (
+                <div className="flex items-center mb-8">
+                  {post.author.image && (
+                    <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
+                      <Image
+                        src={urlFor(post.author.image).url()}
+                        alt={post.author.name}
+                        width={48}
+                        height={48}
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
+                  <div>
+                    <p className="font-medium">{post.author.name}</p>
+                    {post.author.bio && <p className="text-sm text-gray-500 dark:text-gray-400">{post.author.bio}</p>}
+                  </div>
+                </div>
+              )}
             </div>
-          )}
-          
-          <div className="prose prose-lg dark:prose-invert max-w-none mb-12">
-            {content ? (
-              <div className="markdown-content">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                  {content}
-                </ReactMarkdown>
-              </div>
-            ) : (
-              <div className="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg">
-                <p className="text-center">No content available for this post.</p>
+            
+            {post.mainImage && (
+              <div className="relative w-full h-96 md:h-[500px] mb-8 rounded-xl overflow-hidden">
+                <Image 
+                  src={urlFor(post.mainImage).url()}
+                  alt={post.title}
+                  fill
+                  priority
+                  className="object-cover"
+                />
               </div>
             )}
-          </div>
-          
-          <div className="flex justify-between items-center border-t border-b border-gray-200 dark:border-gray-700 py-6 my-12">
-            <button 
-              onClick={handleShare}
-              className="flex items-center text-gray-600 dark:text-gray-400 hover:text-green-500 transition-colors"
-            >
-              <FiShare2 className="mr-2" /> Share this article
-            </button>
+            
+            <div className="prose prose-lg dark:prose-invert max-w-none mb-12">
+              {content ? (
+                <div className="markdown-content">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {content}
+                  </ReactMarkdown>
+                </div>
+              ) : (
+                <div className="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg">
+                  <p className="text-center">No content available for this post.</p>
+                </div>
+              )}
+            </div>
+            
+            <div className="flex justify-between items-center border-t border-gray-200 dark:border-gray-700 py-6">
+              <button 
+                onClick={handleShare}
+                className="flex items-center text-gray-600 dark:text-gray-400 hover:text-green-500 transition-colors font-medium"
+              >
+                <FiShare2 className="mr-2" /> Share this article
+              </button>
+            </div>
           </div>
           
           {relatedPosts && relatedPosts.length > 0 && (
-            <div className="mt-16">
-              <h2 className="text-2xl font-bold mb-6">Related Articles</h2>
+            <div className="mt-12">
+              <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-green-400 via-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">Related Articles</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {relatedPosts.map((relatedPost) => (
-                  <div 
+                  <motion.div 
                     key={relatedPost._id}
-                    className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700"
+                    whileHover={{ y: -8, scale: 1.03 }}
+                    transition={{ duration: 0.3 }}
+                    className="rounded-3xl bg-white/60 dark:bg-gray-900/60 shadow-2xl backdrop-blur-md border-2 border-gray-200/40 dark:border-gray-700/40 overflow-hidden transition-all duration-300 hover:shadow-green-200/40 hover:border-green-400/60 group"
                   >
                     {relatedPost.mainImage && (
-                      <div className="relative h-40 w-full">
+                      <div className="relative h-40 w-full overflow-hidden">
                         <Image 
                           src={urlFor(relatedPost.mainImage).url()}
                           alt={relatedPost.title}
                           fill
-                          className="object-cover"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       </div>
                     )}
                     
                     <div className="p-4">
-                      <h3 className="font-bold mb-2">{relatedPost.title}</h3>
-                      <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-2">
+                      <h3 className="font-bold mb-2 text-gray-900 dark:text-white">{relatedPost.title}</h3>
+                      <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-3">
                         <span>{formatDate(relatedPost.date)}</span>
                         <span className="mx-2">•</span>
                         <span>{relatedPost.readTime}</span>
                       </div>
                       <Link 
                         href={`/blog/${relatedPost.slug.current}`}
-                        className="text-green-500 text-sm font-medium hover:text-green-600 transition-colors"
+                        className="inline-flex items-center font-bold text-sm bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:from-blue-500 hover:to-green-400 transition-all duration-300"
                       >
                         Read more →
                       </Link>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -303,7 +313,7 @@ export default function BlogPost() {
           <div className="mt-12 flex justify-center">
             <Link 
               href="/blog"
-              className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-flex items-center"
+              className="inline-flex items-center font-bold bg-gradient-to-r from-green-400 to-blue-500 text-white px-6 py-3 rounded-full shadow-lg hover:from-blue-500 hover:to-green-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-400"
             >
               <FiArrowLeft className="mr-2" /> Back to Blogs
             </Link>

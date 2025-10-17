@@ -19,6 +19,8 @@
     "ityped": "^1.0.3",
     "next": "^15.2.2",
     "next-sanity": "^9.9.9",
+    "node-latex": "^3.1.0",
+    "pdflatex": "^0.0.1",
     "react": "^19.0.0",
     "react-chartjs-2": "^5.3.0",
     "react-dom": "^19.0.0",

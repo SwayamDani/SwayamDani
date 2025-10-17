@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/resume/route.js": {
+      "maxDuration": 60
+    }
+  }
+}

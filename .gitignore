@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# LaTeX auxiliary files (but keep the compiled PDF)
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+
+# Keep the generated resume PDF for fallback
+!public/generated/main.pdf

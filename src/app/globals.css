@@ -99,11 +99,7 @@
 }
 
 /* Hide cursor on touch devices */
-@media (pointer: coarse) {
-  .cursor-dot, .cursor-ring {
-    display: none !important;
-  }
-}
+
 
 /* Animation classes */
 .animate-float {
