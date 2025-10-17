@@ -79,18 +79,6 @@ University-focused rideshare platform with Firebase backend and Google Maps inte
 AI-powered personal fashion assistant using OpenAI and DALL-E integration.
 **Tech:** React.js, Node.js, Firebase, OpenAI API
 
-## 📊 GitHub Stats
-
-<div align="center">
-  
-![Swayam's GitHub Stats](https://github-readme-stats.vercel.app/api?username=SwayamDani&show_icons=true&theme=tokyonight&hide_border=true)
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=SwayamDani&layout=compact&theme=tokyonight&hide_border=true)
-
-![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=SwayamDani&theme=tokyonight&hide_border=true)
-
-</div>
-
 ## 🏆 Achievements
 
 - 🥇 **15+ Projects** completed across various domains
