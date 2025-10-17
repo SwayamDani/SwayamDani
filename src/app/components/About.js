@@ -55,7 +55,7 @@ export default function About() {
           <div className="rounded-3xl bg-white/60 dark:bg-gray-900/60 shadow-2xl backdrop-blur-md border border-white/20 p-8">
             <h3 className="text-2xl md:text-3xl font-bold mb-6 text-gray-900 dark:text-white">Computer Science Student • UC San Diego</h3>
             <p className="text-gray-700 dark:text-gray-300 mb-6">
-              I'm a Computer Science student at  UC San Diego. 
+              I'm a Computer Science student at UC San Diego. 
               With hands-on experience in AI/ML, full-stack development, and cybersecurity, I build innovative 
               solutions that solve real-world problems and make a tangible impact.
             </p>
