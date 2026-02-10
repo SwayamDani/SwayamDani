@@ -27,16 +27,14 @@ export default function Experience() {
       id: 2,
       role: "Marketing Operations Intern",
       company: "BCOE, UC Riverside",
-      location: "Remote",
-      duration: "July 2025 - September 2025",
-      description: "Optimized project management workflows and created resources to enhance team efficiency.",
+      location: "Riverside, CA",
+      duration: "Jul 2025 - Sep 2025",
+      description: "Audited and redesigned Monday.com workflows to streamline project management.",
       responsibilities: [
-        "Audited and redesigned Monday.com workflows to streamline project management across multiple teams",
-        "Created comprehensive dashboards, templates, and training resources to boost team efficiency by 30%",
-        "Collaborated with cross-functional teams to identify bottlenecks and implement process improvements",
-        "Developed documentation that standardized operations procedures for future interns and staff"
+        "Audited and redesigned Monday.com workflows to streamline project management",
+        "Created dashboards, templates, and training resources to boost team efficiency"
       ],
-      skills: ["Monday.com", "Project Management", "Process Optimization", "Documentation", "Agile"]
+      skills: ["Monday.com", "Project Management", "Process Optimization", "Documentation"]
     },
     {
       id: 3,
@@ -46,17 +44,16 @@ export default function Experience() {
       duration: "April 2024 - June 2025",
       description: "Represented the College of Engineering at outreach events and on official social media platforms.",
       responsibilities: [
-        "Represented the College of Engineering at recruitment events and community outreach programs",
-        "Delivered technical presentations to prospective students, translating complex engineering concepts for diverse audiences",
-        "Assisted in planning and executing major department events, contributing to a 15% increase in program applications",
-        "Appeared as a student face on official social media platforms, expanding department visibility and engagement"
+        "Represented the College of Engineering at outreach events",
+        "Assisted in planning events",
+        "Appeared as a student face on official social media platforms"
       ],
       skills: ["Presentation", "Technical Communication", "Leadership", "Event Planning", "Social Media"]
     }
   ];
 
   return (
-    <div className="container mx-auto py-24 px-4 relative">
+    <div className="container mx-auto py-32 px-4 md:px-6 lg:px-8 relative">
       {/* Subtle background accent */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute left-1/2 top-0 w-2/3 h-96 bg-gradient-to-br from-green-200/40 via-blue-200/30 to-purple-200/20 rounded-full blur-3xl -translate-x-1/2"></div>
@@ -91,8 +88,8 @@ export default function Experience() {
 
             <div className="md:w-1/2 pt-4 md:pt-0 pl-8 md:pl-0 md:pr-8 md:mr-auto">
               <motion.div
-                className={`rounded-3xl bg-white/60 dark:bg-gray-900/60 shadow-2xl backdrop-blur-md border border-white/20 p-8 cursor-pointer transition-all duration-300 ${
-                  activeExperience === exp.id ? 'scale-105 shadow-3xl border-l-8 border-gradient-to-b from-green-400 via-blue-400 to-purple-400' : 'hover:shadow-xl'
+                className={`rounded-3xl bg-white/70 dark:bg-gray-900/70 shadow-2xl backdrop-blur-md border border-white/20 p-8 cursor-pointer transition-all duration-300 ${
+                  activeExperience === exp.id ? 'scale-105 shadow-3xl border-l-4 border-green-400' : 'hover:shadow-xl hover:border-green-400/30'
                 }`}
                 onClick={() => setActiveExperience(activeExperience === exp.id ? null : exp.id)}
                 animate={activeExperience === exp.id ? { y: -8, scale: 1.05 } : { y: 0, scale: 1 }}

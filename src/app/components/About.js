@@ -6,13 +6,14 @@ import { FiUser, FiAward, FiCalendar } from 'react-icons/fi';
 
 export default function About() {
   const skills = [
-    "Python", "JavaScript", "TypeScript", "React", "Next.js",
-    "FastAPI", "Node.js", "TensorFlow", "PyTorch", "Firebase",
-    "Redis", "MongoDB", "Git", "GCP", "UI/UX Design"
+    "Python", "Java", "JavaScript", "TypeScript", "C++", "SQL",
+    "React", "Next.js", "FastAPI", "Node.js", "TensorFlow", "PyTorch",
+    "NumPy", "pandas", "scikit-learn", "OpenCV", "Hugging Face",
+    "Firebase", "Redis", "MongoDB", "GCP", "Argon2", "JWT"
   ];
 
   return (
-    <div className="container mx-auto py-24 px-4">
+    <div className="container mx-auto py-32 px-4 md:px-6 lg:px-8">
       <h2 className="text-4xl font-extrabold mb-3 text-center bg-gradient-to-r from-green-400 via-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">About Me</h2>
       <p className="text-lg text-center text-gray-700 dark:text-gray-300 mb-4 max-w-2xl mx-auto font-semibold tracking-wide">
         <span className="inline-block px-4 py-2 rounded-xl bg-white/60 dark:bg-gray-900/60 shadow-md backdrop-blur-md border border-white/20">
@@ -55,14 +56,14 @@ export default function About() {
           <div className="rounded-3xl bg-white/60 dark:bg-gray-900/60 shadow-2xl backdrop-blur-md border border-white/20 p-8">
             <h3 className="text-2xl md:text-3xl font-bold mb-6 text-gray-900 dark:text-white">Computer Science Student • UC San Diego</h3>
             <p className="text-gray-700 dark:text-gray-300 mb-6">
-              I'm a Computer Science student at UC San Diego. 
-              With hands-on experience in AI/ML, full-stack development, and cybersecurity, I build innovative 
-              solutions that solve real-world problems and make a tangible impact.
+              I'm a Computer Science student at UC San Diego. With a GPA of 3.65/4.0, I've completed coursework in 
+              Algorithms, Systems Programming, Cybersecurity, Databases, and Ethics in Tech.
             </p>
             <p className="text-gray-700 dark:text-gray-300 mb-6">
-              Currently working as an AI/ML Intern at HandsInTech, where I develop proprietary political strategy 
-              generators using LLaMA 3.1-8B with RAG architecture. I'm passionate about leveraging cutting-edge 
-              AI technologies and creating software that combines technical excellence with practical business value.
+              Currently working as an AI/ML Intern at HandsInTech, where I solely developed a proprietary political 
+              strategy generator using LoRA-adapted LLaMA 3.1-8B and RAG architecture. I'm passionate about leveraging 
+              cutting-edge AI technologies, fine-tuning domain-specific models, and creating software that combines 
+              technical excellence with practical business value.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -78,7 +79,7 @@ export default function About() {
                   <FiAward className="text-green-600 dark:text-green-300 text-xl" />
                 </div>
                 <h4 className="font-bold mb-1">Education</h4>
-                <p className="text-gray-600 dark:text-gray-400">UCSD (Transfer)</p>
+                <p className="text-gray-600 dark:text-gray-400">UC San Diego</p>
               </div>
               <div className="bg-white/80 dark:bg-gray-800/80 p-4 rounded-xl shadow-md flex flex-col items-center">
                 <div className="bg-green-100 dark:bg-green-900 w-12 h-12 rounded-full flex items-center justify-center mb-4">

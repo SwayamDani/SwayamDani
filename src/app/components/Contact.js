@@ -61,7 +61,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="container mx-auto py-24 px-4 relative">
+    <div className="container mx-auto py-32 px-4 md:px-6 lg:px-8 relative">
       {/* Subtle background accent */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute left-1/2 top-0 w-2/3 h-96 bg-gradient-to-br from-green-200/40 via-blue-200/30 to-purple-200/20 rounded-full blur-3xl -translate-x-1/2"></div>
@@ -87,8 +87,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="text-lg font-medium mb-1">Email</h4>
-                  <p className="text-gray-600 dark:text-gray-400">swayamdani@swayamdani.com</p>
-                  <p className="text-gray-600 dark:text-gray-400">swayamashishdani@gmail.com</p>
+                  <a href="mailto:sdani025@ucsd.edu" className="text-gray-600 dark:text-gray-400 hover:text-green-500 transition-colors">sdani025@ucsd.edu</a>
                 </div>
               </div>
               <div className="flex items-start">
@@ -97,7 +96,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="text-lg font-medium mb-1">Phone</h4>
-                  <p className="text-gray-600 dark:text-gray-400">+1 341-224-3555</p>
+                  <a href="tel:3412243555" className="text-gray-600 dark:text-gray-400 hover:text-green-500 transition-colors">341-224-3555</a>
                 </div>
               </div>
               <div className="flex items-start">
@@ -106,7 +105,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="text-lg font-medium mb-1">Location</h4>
-                  <p className="text-gray-600 dark:text-gray-400">La Jolla, CA</p>
+                  <p className="text-gray-600 dark:text-gray-400">San Diego, CA</p>
                 </div>
               </div>
             </div>

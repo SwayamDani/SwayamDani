@@ -17,7 +17,6 @@ export default function Hero() {
     'AI/ML Engineer',
     'Full Stack Developer',
     'Problem Solver',
-    'Open Source Contributor',
   ];
 
   // Typewriter effect for tagline
@@ -128,7 +127,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          I love building innovative solutions at the intersection of technology, design, and business. Let’s create something awesome together.
+          Building innovative solutions at the intersection of AI/ML, full-stack development, and cybersecurity. Currently developing proprietary AI systems at HandsInTech.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

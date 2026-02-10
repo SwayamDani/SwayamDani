@@ -8,6 +8,7 @@ import Hero from './components/Hero'
 import About from './components/About'
 import BlogSection from './components/BlogSection'
 import Achievements from './components/Achievements'
+import Skills from './components/Skills'
 import BackToTop from './components/BackToTop'
 
 export default function Home() {
@@ -63,6 +64,16 @@ export default function Home() {
         viewport={{ once: true }}
       >
         <Achievements />
+      </motion.section>
+
+      <motion.section 
+        id="skills"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <Skills />
       </motion.section>
 
       <motion.section 
