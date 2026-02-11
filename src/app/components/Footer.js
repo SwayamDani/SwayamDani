@@ -1,5 +1,7 @@
 'use client'
 import React from 'react';
+import { FiLinkedin, FiGithub, FiMail } from 'react-icons/fi';
+
 export default function Footer() {
     return (
       <footer className="bg-white dark:bg-gray-800 py-8">
@@ -7,7 +9,7 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <h2 className="text-2xl font-bold">Swayam Dani</h2>
-              <p className="text-gray-600 dark:text-gray-400">CS & Business Applications @ UCR</p>
+              <p className="text-gray-600 dark:text-gray-400">CS @ UCSD</p>
             </div>
             
             <div className="flex space-x-6">
@@ -17,7 +19,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="text-gray-600 dark:text-gray-400 hover:text-green-500 transition-colors duration-300"
               >
-                <i className="fab fa-linkedin text-xl"></i>
+                <FiLinkedin className="text-xl" />
               </a>
               <a 
                 href="https://github.com/SwayamDani" 
@@ -25,13 +27,13 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="text-gray-600 dark:text-gray-400 hover:text-green-500 transition-colors duration-300"
               >
-                <i className="fab fa-github text-xl"></i>
+                <FiGithub className="text-xl" />
               </a>
               <a 
-                href="mailto:sdani025@ucr.edu" 
+                href="mailto:swayamdani@swayamdani.com" 
                 className="text-gray-600 dark:text-gray-400 hover:text-green-500 transition-colors duration-300"
               >
-                <i className="fas fa-envelope text-xl"></i>
+                <FiMail className="text-xl" />
               </a>
             </div>
           </div>
