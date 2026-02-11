@@ -49,3 +49,6 @@ next-env.d.ts
 
 # Keep the generated resume PDF for fallback
 !public/generated/main.pdf
+
+# LaTeX compilation temporary files
+.temp/
