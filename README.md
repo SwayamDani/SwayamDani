@@ -46,13 +46,24 @@ class SwayamDani:
 
 <div align="center">
   
-![Swayam's GitHub stats](https://github-readme-stats.vercel.app/api?username=SwayamDani&show_icons=true&theme=radical&hide_border=false&include_all_commits=true&count_private=true)
+<a href="https://github.com/SwayamDani">
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=SwayamDani&show_icons=true&theme=radical&hide_border=false&include_all_commits=true&count_private=true" alt="Swayam's GitHub stats"/>
+  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=SwayamDani&theme=radical&hide_border=false&layout=compact&langs_count=8" alt="Top Languages"/>
+</a>
   
-![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=SwayamDani&theme=radical&hide_border=false)
-  
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=SwayamDani&theme=radical&hide_border=false&include_all_commits=true&count_private=true&layout=compact)
+</div>
 
-![GitHub Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=SwayamDani&theme=radical&hide_border=false)
+<div align="center">
+  
+<a href="https://github.com/SwayamDani">
+  <img height="180em" src="https://github-readme-streak-stats.herokuapp.com/?user=SwayamDani&theme=radical&hide_border=false" alt="GitHub Streak"/>
+</a>
+
+</div>
+
+<div align="center">
+  
+![GitHub Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=SwayamDani&theme=radical&hide_border=false&area=true)
 
 </div>
 
