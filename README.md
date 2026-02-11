@@ -18,14 +18,6 @@
 </div>
 
 <br/>
-
-<div align="center">
-  <a href="https://github.com/SwayamDani">
-    <img height="180em" src="https://github-readme-stats.vercel.app/api?username=SwayamDani&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=00D9FF&icon_color=00D9FF&text_color=ffffff&include_all_commits=true&count_private=true" alt="GitHub Stats"/>
-    <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=SwayamDani&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=00D9FF&text_color=ffffff&layout=compact&langs_count=8" alt="Top Languages"/>
-  </a>
-</div>
-
 <div align="center">
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=SwayamDani&theme=tokyonight&hide_border=true&background=0D1117&ring=00D9FF&fire=00D9FF&currStreakLabel=00D9FF" alt="GitHub Streak"/>
 </div>
