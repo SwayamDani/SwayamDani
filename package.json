@@ -20,7 +20,7 @@
     "happy-dom": "^20.6.0",
     "ityped": "^1.0.3",
     "latex.js": "^0.12.6",
-    "next": "^15.2.2",
+    "next": "^15.5.7",
     "next-sanity": "^9.9.9",
     "node-latex": "^3.1.0",
     "pdfjs-dist": "^5.4.624",
