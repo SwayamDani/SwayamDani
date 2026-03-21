@@ -5,12 +5,6 @@ import Image from 'next/image';
 import { FiUser, FiAward, FiCalendar } from 'react-icons/fi';
 
 export default function About() {
-  const skills = [
-    "Python", "Java", "JavaScript", "TypeScript", "C++", "SQL",
-    "React", "Next.js", "FastAPI", "Node.js", "TensorFlow", "PyTorch",
-    "NumPy", "pandas", "scikit-learn", "OpenCV", "Hugging Face",
-    "Firebase", "Redis", "MongoDB", "GCP", "Argon2", "JWT"
-  ];
 
   return (
     <div className="container mx-auto py-32 px-4 md:px-6 lg:px-8">
@@ -89,35 +83,6 @@ export default function About() {
                 <p className="text-gray-600 dark:text-gray-400">10+ Completed</p>
               </div>
             </div>
-
-            {/* Animated skill tags */}
-            <motion.div
-              className="flex flex-wrap gap-2 mt-6"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={{
-                hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: 0.07
-                  }
-                }
-              }}
-            >
-              {skills.map((skill, index) => (
-                <motion.span
-                  key={index}
-                  className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-full text-sm font-semibold shadow-sm hover:bg-green-100 dark:hover:bg-green-900 transition-colors duration-200 cursor-pointer"
-                  variants={{
-                    hidden: { opacity: 0, y: 10 },
-                    visible: { opacity: 1, y: 0 }
-                  }}
-                >
-                  {skill}
-                </motion.span>
-              ))}
-            </motion.div>
 
             <div className="mt-8 text-center">
               <a

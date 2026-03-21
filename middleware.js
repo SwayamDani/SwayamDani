@@ -13,8 +13,14 @@ const basicAuth = (req) => {
     })
   }
   
-  const [scheme, encoded] = auth.split(' ')
-  const [user, pass] = atob(encoded).split(':')
+  const parts = auth.split(' ')
+  if (parts.length !== 2 || parts[0].toLowerCase() !== 'basic') {
+    return new Response('Auth Required', {
+      status: 401,
+      headers: { 'WWW-Authenticate': 'Basic realm="Secure Area"' },
+    })
+  }
+  const [user, pass] = atob(parts[1]).split(':')
   
   const validUser = user === process.env.STUDIO_USER
   const validPass = pass === process.env.STUDIO_PASS
@@ -29,17 +35,12 @@ const basicAuth = (req) => {
 }
 
 export default function middleware(req) {
-  // For debugging - inspect request hostname and path
-  console.log('Middleware running for:', req.nextUrl.pathname);
-  console.log('Request hostname:', req.headers.get('host'));
-  
   // Handle blog route restriction to only localhost:3000
   if (req.nextUrl.pathname.startsWith('/blog')) {
     const hostname = req.headers.get('host');
-    
+
     // Only allow localhost:3000, block all other domains including localhost with other ports
     if (hostname !== 'localhost:3000') {
-      console.log(`Blocking access to ${req.nextUrl.pathname} from ${hostname}`);
       
       // Return 403 Forbidden response with a clear message
       return new Response('Access Denied: This page is only accessible from localhost:3000', {

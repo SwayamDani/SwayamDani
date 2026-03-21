@@ -74,15 +74,20 @@ export default function Hero() {
       const particles = new THREE.Points(particlesGeometry, particlesMaterial);
       scene.add(particles);
       camera.position.z = 3.5;
-      // Animate
+      // Respect reduced motion preference
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      let animationId;
       const animate = () => {
-        requestAnimationFrame(animate);
-        particles.rotation.x += 0.0007;
-        particles.rotation.y += 0.0009;
+        animationId = requestAnimationFrame(animate);
+        if (!prefersReducedMotion) {
+          particles.rotation.x += 0.0007;
+          particles.rotation.y += 0.0009;
+        }
         renderer.render(scene, camera);
       };
       animate();
-      // Handle window resize
+
       const handleResize = () => {
         const width = window.innerWidth;
         const height = window.innerHeight;
@@ -92,8 +97,13 @@ export default function Hero() {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       };
       window.addEventListener('resize', handleResize);
+
       return () => {
+        cancelAnimationFrame(animationId);
         window.removeEventListener('resize', handleResize);
+        particlesGeometry.dispose();
+        particlesMaterial.dispose();
+        renderer.dispose();
       };
     }
   }, []);

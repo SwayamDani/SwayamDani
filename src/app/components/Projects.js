@@ -1,8 +1,8 @@
 'use client'
 import React from 'react';
-// import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiGithub, FiExternalLink, FiCode, FiLayers } from 'react-icons/fi';
+import Image from 'next/image';
+import { FiGithub, FiExternalLink, FiCode } from 'react-icons/fi';
 
 export default function Projects() {
   // No filter, just show all projects
@@ -12,6 +12,7 @@ export default function Projects() {
       title: "Password Security Assessment Tool",
       description: "Built a full-stack app to assess password strength and check breach history via k-Anonymity API. Integrated Argon2 hashing, Redis caching, and JWT auth for stateless API protection. Designed an interactive dashboard for users to view password health analytics in real time.",
       demoUrl: "https://password-manager-eight-lovat.vercel.app",
+      screenshot: "/assets/projects/password-manager.png",
       tags: ["security", "web", "python"],
       tech: ["Python", "FastAPI", "React", "Redis", "JWT", "Argon2", "k-Anonymity"],
       github: "https://github.com/SwayamDani/passwordManager",
@@ -22,6 +23,7 @@ export default function Projects() {
       title: "Web Crawler & Analyzer (Crawlit)",
       description: "Developed a modular async crawler with login support, deduplication, and error resilience. Enabled HTML parsing, link graph generation, and site metadata insights with 70% reduced latency. Built as a reusable library to power other automation tools and content bots.",
       demoUrl: null,
+      screenshot: null,
       tags: ["python", "web", "data"],
       tech: ["Python", "Asyncio", "SQLite", "BeautifulSoup"],
       github: "https://github.com/SwayamDani/crawlit",
@@ -32,6 +34,7 @@ export default function Projects() {
       title: "UniRideShare",
       description: "Engineered real-time college rideshare app supporting geolocation and secure Firebase auth. Implemented dynamic route filtering and user chat features to facilitate safer ride coordination.",
       demoUrl: "https://unirideshare.com",
+      screenshot: "/assets/projects/unirideshare.png",
       tags: ["web"],
       tech: ["Next.js", "Firebase", "Google Maps API"],
       github: "https://github.com/SwayamDani/unirideshare",
@@ -42,6 +45,7 @@ export default function Projects() {
       title: "StyleAI",
       description: "AI-powered fashion tool using OpenAI and DALL·E to generate personalized outfit recommendations and fashion insights.",
       demoUrl: "https://outfit-creator-one.vercel.app/",
+      screenshot: "/assets/projects/styleai.png",
       tags: ["ai", "web"],
       tech: ["OpenAI", "DALL·E", "React", "Node.js"],
       github: "https://github.com/SwayamDani/outfit_creator",
@@ -52,6 +56,7 @@ export default function Projects() {
       title: "DR.ai",
       description: "Streamlit-based medical Q&A application with GPT-3.5 integration, providing accurate health information and medical insights.",
       demoUrl: "https://web-production-4a51.up.railway.app/",
+      screenshot: "/assets/projects/drai.png",
       tags: ["ai", "web"],
       tech: ["Python", "Streamlit", "GPT-3.5"],
       github: "https://github.com/SwayamDani/DR.ai",
@@ -62,6 +67,7 @@ export default function Projects() {
       title: "Travel Planner",
       description: "Flask app with API-driven itinerary generation and SQL caching, creating personalized travel plans based on user preferences and destinations.",
       demoUrl: "https://itinerary-generator-chi.vercel.app/",
+      screenshot: "/assets/projects/travel-planner.png",
       tags: ["ai", "web"],
       tech: ["Flask", "SQL", "API Integration"],
       github: "https://github.com/SwayamDani/itinerary_generator",
@@ -136,25 +142,22 @@ export default function Projects() {
               <span className="absolute top-4 left-4 bg-gradient-to-r from-green-400 to-blue-500 text-white text-xs font-bold px-4 py-1 rounded-full shadow-md z-20">Featured</span>
             )}
             <div className="relative w-full h-64 overflow-hidden rounded-t-3xl bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-              {project.demoUrl ? (
+              {project.screenshot ? (
                 <>
-                  <iframe
-                    src={project.demoUrl}
-                    title={project.title}
-                    className="w-full h-full border-0 rounded-t-3xl"
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    sandbox="allow-scripts allow-same-origin"
+                  <Image
+                    src={project.screenshot}
+                    alt={`${project.title} screenshot`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-300 pointer-events-none" />
                 </>
               ) : (
                 <div className="relative w-full h-full flex items-center justify-center">
-                  {/* Animated background pattern */}
                   <div className="absolute inset-0 opacity-20">
                     <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(68,68,68,.2)_50%,transparent_75%,transparent_100%)] bg-[length:20px_20px]"></div>
                   </div>
-                  {/* Icon and text overlay */}
                   <div className="relative z-10 flex flex-col items-center justify-center text-center px-6">
                     <div className="mb-4 p-6 rounded-2xl bg-gradient-to-br from-green-400/20 via-blue-400/20 to-purple-500/20 backdrop-blur-sm border border-white/10">
                       <FiCode className="text-6xl text-green-400 dark:text-green-300" />
@@ -166,7 +169,6 @@ export default function Projects() {
                       View on GitHub
                     </p>
                   </div>
-                  {/* Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 via-transparent to-transparent"></div>
                 </div>
               )}

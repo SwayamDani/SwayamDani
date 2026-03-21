@@ -30,7 +30,6 @@ export default function BlogPage() {
         }
         
         const data = await response.json();
-        console.log('Blog posts data:', data);
         setPosts(data.posts || []);
       } catch (error) {
         console.error('Error fetching blog posts:', error);
@@ -42,6 +41,17 @@ export default function BlogPage() {
 
     fetchPosts();
   }, []);
+
+  // Strip markdown syntax from plain-text excerpts
+  const stripMarkdown = (text) => {
+    if (!text) return '';
+    return text
+      .replace(/^#{1,6}\s+/gm, '')
+      .replace(/\*\*(.*?)\*\*/g, '$1')
+      .replace(/\*(.*?)\*/g, '$1')
+      .replace(/`(.*?)`/g, '$1')
+      .trim();
+  };
 
   // Function to format date
   const formatDate = (dateString) => {
@@ -140,6 +150,7 @@ export default function BlogPage() {
                       src={urlFor(post.mainImage).url()}
                       alt={post.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </Link>
@@ -163,7 +174,7 @@ export default function BlogPage() {
                     </h2>
                   </Link>
                   <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow">
-                    {post.excerpt}
+                    {stripMarkdown(post.excerpt)}
                   </p>
                   <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mt-auto">
                     <FiCalendar className="mr-1" />

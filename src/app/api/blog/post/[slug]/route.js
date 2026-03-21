@@ -16,7 +16,7 @@ export async function GET(request, context) {
         slug,
         body,
         "date": publishedAt,
-        "readTime": round(length(pt::text(body)) / 1500) + " min read",
+        "readTime": string(coalesce(round(length(pt::text(body)) / 1500), 1)) + " min read",
         "category": categories[0]->title,
         mainImage,
         "author": author->{
@@ -39,7 +39,7 @@ export async function GET(request, context) {
         slug,
         "excerpt": array::join(string::split(pt::text(body[0...1]), "")[0...150], "") + "...",
         "date": publishedAt,
-        "readTime": round(length(pt::text(body)) / 1500) + " min read",
+        "readTime": string(coalesce(round(length(pt::text(body)) / 1500), 1)) + " min read",
         "category": categories[0]->title,
         mainImage
       }

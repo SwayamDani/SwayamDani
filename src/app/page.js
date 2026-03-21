@@ -20,7 +20,7 @@ export default function Home() {
     async function fetchBlogPosts() {
       try {
         setIsLoading(true);
-        const response = await fetch('/api/blog/posts');
+        const response = await fetch('/api/blog/post');
         
         if (!response.ok) {
           throw new Error(`Error: ${response.status}`);

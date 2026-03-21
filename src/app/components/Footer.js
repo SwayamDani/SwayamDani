@@ -30,7 +30,7 @@ export default function Footer() {
                 <FiGithub className="text-xl" />
               </a>
               <a 
-                href="mailto:swayamdani@swayamdani.com" 
+                href="mailto:sdani025@ucsd.edu" 
                 className="text-gray-600 dark:text-gray-400 hover:text-green-500 transition-colors duration-300"
               >
                 <FiMail className="text-xl" />

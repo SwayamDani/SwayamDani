@@ -47,21 +47,17 @@ export default function BlogPost() {
       
       try {
         setIsLoading(true);
-        console.log(`Fetching post with slug: ${params.slug}`);
         const response = await fetch(`/api/blog/post/${params.slug}`);
-        
+
         if (!response.ok) {
-          console.error(`Error response: ${response.status}`);
           if (response.status === 404) {
             throw new Error('Post not found');
           }
           const errorData = await response.json();
-          console.error('Error data:', errorData);
           throw new Error(`Error: ${response.status} - ${errorData.error || 'Unknown error'}`);
         }
-        
+
         const data = await response.json();
-        console.log('Post data received:', data);
         setPost(data.post);
         setRelatedPosts(data.relatedPosts || []);
         
@@ -233,11 +229,12 @@ export default function BlogPost() {
             
             {post.mainImage && (
               <div className="relative w-full h-96 md:h-[500px] mb-8 rounded-xl overflow-hidden">
-                <Image 
+                <Image
                   src={urlFor(post.mainImage).url()}
                   alt={post.title}
                   fill
                   priority
+                  sizes="100vw"
                   className="object-cover"
                 />
               </div>
@@ -280,10 +277,11 @@ export default function BlogPost() {
                   >
                     {relatedPost.mainImage && (
                       <div className="relative h-40 w-full overflow-hidden">
-                        <Image 
+                        <Image
                           src={urlFor(relatedPost.mainImage).url()}
                           alt={relatedPost.title}
                           fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       </div>

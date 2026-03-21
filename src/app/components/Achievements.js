@@ -29,26 +29,26 @@ export default function Achievements() {
   }, []);
 
   const Counter = ({ end, duration = 2000, suffix = '' }) => {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(end);
+    const [animated, setAnimated] = useState(false);
 
     useEffect(() => {
-      if (!inView) return;
+      if (!inView || animated) return;
+      setAnimated(true);
+      setCount(0);
 
       let startTime;
       const animate = (currentTime) => {
         if (!startTime) startTime = currentTime;
-        const progress = (currentTime - startTime) / duration;
-
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        setCount(Math.floor(end * progress));
         if (progress < 1) {
-          setCount(Math.floor(end * progress));
           requestAnimationFrame(animate);
-        } else {
-          setCount(end);
         }
       };
 
       requestAnimationFrame(animate);
-    }, [inView, end, duration]);
+    }, [inView, end, duration, animated]);
 
     return <span>{count}{suffix}</span>;
   };

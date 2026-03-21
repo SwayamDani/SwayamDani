@@ -6,10 +6,7 @@ export async function GET(request) {
   // Check if the request is coming from localhost:3000
   const host = request.headers.get('host');
   
-  // Log for debugging
-  console.log('API Request host:', host);
-
-  // umcomment the following lines to enable maintenance mode for non-localhost requests
+  // Uncomment the following lines to enable maintenance mode for non-localhost requests
   // if (host !== 'localhost:3000') {
   //   console.log('Showing maintenance message for API access from:', host);
   //   return NextResponse.json({ 
@@ -27,7 +24,7 @@ export async function GET(request) {
         slug,
         "excerpt": array::join(string::split(pt::text(body[0...1]), "")[0...200], "") + "...",
         "date": publishedAt,
-        "readTime": round(length(pt::text(body)) / 1500) + " min read",
+        "readTime": string(coalesce(round(length(pt::text(body)) / 1500), 1)) + " min read",
         "category": categories[0]->title,
         mainImage
       }

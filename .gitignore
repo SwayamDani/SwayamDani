@@ -52,3 +52,7 @@ next-env.d.ts
 
 # LaTeX compilation temporary files
 .temp/
+.claude/
+.playwright-mcp/
+
+.package-lock.json
