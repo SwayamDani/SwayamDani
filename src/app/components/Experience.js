@@ -1,145 +1,196 @@
 'use client'
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useState } from 'react';
-import { FiBriefcase, FiCalendar, FiMapPin } from 'react-icons/fi';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiCalendar, FiMapPin, FiChevronDown } from 'react-icons/fi';
 
 export default function Experience() {
-  const [activeExperience, setActiveExperience] = useState(null);
-  
+  const [activeId, setActiveId] = useState(null);
+
   const experiences = [
     {
       id: 1,
-      role: "AI/ML Intern",
-      company: "HandsInTech",
-      location: "Mumbai, India",
-      duration: "June 2025 - Present",
-      description: "Developing proprietary AI-powered political strategy generator using advanced LLM techniques and RAG architecture.",
+      role: 'AI/ML Intern',
+      company: 'HandsInTech',
+      location: 'Mumbai, India',
+      duration: 'June 2025 – Present',
+      description:
+        'Developing proprietary AI-powered political strategy generator using advanced LLM techniques and RAG architecture.',
       responsibilities: [
-        "Solely developed a proprietary political strategy generator using LoRA-adapted LLaMA 3.1-8B and RAG architecture",
-        "Fine-tuned domain-specific models with real-time crawled data and ground research from Maharashtra Vidhan Sabha",
-        "Engineered a FastAPI backend with async LLM serving, SQLite analytics, and session-aware multi-source intelligence correlation",
-        "Implemented advanced prompt engineering and retrieval-augmented generation for accurate policy recommendations"
+        'Solely built a proprietary political strategy generator using LoRA-adapted LLaMA 3.1-8B and RAG architecture',
+        'Fine-tuned domain-specific models with real-time crawled data from Maharashtra Vidhan Sabha ground research',
+        'Engineered a FastAPI backend with async LLM serving, SQLite analytics, and session-aware multi-source intelligence correlation',
+        'Implemented advanced prompt engineering and retrieval-augmented generation for accurate policy recommendations',
       ],
-      skills: ["Python", "LLaMA", "RAG", "FastAPI", "SQLite", "LoRA", "LLM Fine-tuning"]
+      skills: ['Python', 'LLaMA', 'RAG', 'FastAPI', 'SQLite', 'LoRA', 'LLM Fine-tuning'],
     },
     {
       id: 2,
-      role: "Marketing Operations Intern",
-      company: "BCOE, UC Riverside",
-      location: "Riverside, CA",
-      duration: "Jul 2025 - Sep 2025",
-      description: "Audited and redesigned Monday.com workflows to streamline project management.",
+      role: 'Marketing Operations Intern',
+      company: 'BCOE, UC Riverside',
+      location: 'Riverside, CA',
+      duration: 'Jul 2025 – Sep 2025',
+      description: 'Audited and redesigned Monday.com workflows to streamline project management.',
       responsibilities: [
-        "Audited and redesigned Monday.com workflows to streamline project management",
-        "Created dashboards, templates, and training resources to boost team efficiency"
+        'Audited and redesigned Monday.com workflows to streamline project management',
+        'Created dashboards, templates, and training resources to boost team efficiency',
       ],
-      skills: ["Monday.com", "Project Management", "Process Optimization", "Documentation"]
+      skills: ['Monday.com', 'Project Management', 'Process Optimization', 'Documentation'],
     },
     {
       id: 3,
-      role: "Engineering Ambassador",
-      company: "BCOE, UC Riverside",
-      location: "Riverside, CA",
-      duration: "April 2024 - June 2025",
-      description: "Represented the College of Engineering at outreach events and on official social media platforms.",
+      role: 'Engineering Ambassador',
+      company: 'BCOE, UC Riverside',
+      location: 'Riverside, CA',
+      duration: 'April 2024 – June 2025',
+      description: 'Represented the College of Engineering at outreach events and on official social media platforms.',
       responsibilities: [
-        "Represented the College of Engineering at outreach events",
-        "Assisted in planning events",
-        "Appeared as a student face on official social media platforms"
+        'Represented the College of Engineering at outreach and recruitment events',
+        'Assisted in planning and executing campus events',
+        'Appeared as a student face on official social media platforms',
       ],
-      skills: ["Presentation", "Technical Communication", "Leadership", "Event Planning", "Social Media"]
-    }
+      skills: ['Presentation', 'Technical Communication', 'Leadership', 'Event Planning'],
+    },
   ];
 
   return (
-    <div className="container mx-auto py-32 px-4 md:px-6 lg:px-8 relative">
-      {/* Subtle background accent */}
-      <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute left-1/2 top-0 w-2/3 h-96 bg-gradient-to-br from-green-200/40 via-blue-200/30 to-purple-200/20 rounded-full blur-3xl -translate-x-1/2"></div>
-      </div>
-      <h2 className="text-4xl font-extrabold mb-4 text-center bg-gradient-to-r from-green-400 via-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">Experience</h2>
-      <p className="text-xl text-center text-gray-600 dark:text-gray-400 mb-16 max-w-3xl mx-auto">
-        My professional journey and the skills I've developed along the way.
-      </p>
+    <div className="py-32">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-4xl">
 
-      <div className="relative">
-        {/* Gradient timeline connector */}
-        <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-2 bg-gradient-to-b from-green-400 via-blue-400 to-purple-400 opacity-60 rounded-full"></div>
+        {/* Section header */}
+        <motion.p
+          className="text-[#64ffda] font-mono text-sm mb-3"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          viewport={{ once: true }}
+        >
+          05. experience
+        </motion.p>
+        <motion.h2
+          className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          viewport={{ once: true }}
+        >
+          Where I've Worked
+        </motion.h2>
+        <motion.p
+          className="text-slate-500 dark:text-slate-400 mb-16"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          Professional experience and the impact I've driven.
+        </motion.p>
 
-        {/* Experience items */}
-        {experiences.map((exp, index) => (
-          <motion.div
-            key={exp.id}
-            className={`mb-16 flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <div className="md:w-1/2"></div>
+        {/* Timeline */}
+        <div className="relative">
+          {/* Vertical line */}
+          <div className="absolute left-4 top-0 bottom-0 w-px bg-slate-200 dark:bg-slate-800" />
 
-            {/* Timeline icon with gradient */}
-            <div className="flex items-center justify-center relative z-10">
-              <div className="absolute bg-gradient-to-br from-green-400 via-blue-400 to-purple-500 p-2 rounded-full shadow-lg border-4 border-white dark:border-gray-900 animate-float">
-                <FiBriefcase className="text-white text-2xl" />
-              </div>
-            </div>
-
-            <div className="md:w-1/2 pt-4 md:pt-0 pl-8 md:pl-0 md:pr-8 md:mr-auto">
+          <div className="space-y-8">
+            {experiences.map((exp, i) => (
               <motion.div
-                className={`rounded-3xl bg-white/70 dark:bg-gray-900/70 shadow-2xl backdrop-blur-md border border-white/20 p-8 cursor-pointer transition-all duration-300 ${
-                  activeExperience === exp.id ? 'scale-105 shadow-3xl border-l-4 border-green-400' : 'hover:shadow-xl hover:border-green-400/30'
-                }`}
-                onClick={() => setActiveExperience(activeExperience === exp.id ? null : exp.id)}
-                animate={activeExperience === exp.id ? { y: -8, scale: 1.05 } : { y: 0, scale: 1 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                key={exp.id}
+                className="relative pl-12"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                viewport={{ once: true }}
               >
-                <h3 className="text-2xl font-bold mb-1 text-gray-900 dark:text-white">{exp.role}</h3>
-                <h4 className="text-xl text-green-500 mb-3">{exp.company}</h4>
-
-                <div className="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400 mb-4">
-                  <div className="flex items-center">
-                    <FiCalendar className="mr-1" />
-                    <span>{exp.duration}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FiMapPin className="mr-1" />
-                    <span>{exp.location}</span>
-                  </div>
+                {/* Timeline dot */}
+                <div
+                  className={`absolute left-0 top-5 w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                    activeId === exp.id
+                      ? 'border-[#64ffda] bg-[#64ffda]/10'
+                      : 'border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0a0f1e]'
+                  }`}
+                >
+                  <div
+                    className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                      activeId === exp.id ? 'bg-[#64ffda]' : 'bg-slate-400 dark:bg-slate-600'
+                    }`}
+                  />
                 </div>
 
-                <p className="mb-4 text-gray-700 dark:text-gray-300">{exp.description}</p>
+                {/* Card */}
+                <div
+                  className={`p-6 rounded-lg border cursor-pointer transition-all duration-300 ${
+                    activeId === exp.id
+                      ? 'bg-white dark:bg-[#0d1117] border-[#64ffda]/40 shadow-lg'
+                      : 'bg-white dark:bg-[#0d1117] border-slate-200 dark:border-slate-800/80 hover:border-[#64ffda]/30'
+                  }`}
+                  onClick={() => setActiveId(activeId === exp.id ? null : exp.id)}
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-0.5">
+                        {exp.role}
+                      </h3>
+                      <h4 className="text-[#64ffda] font-medium text-sm mb-3">{exp.company}</h4>
 
-                {activeExperience === exp.id && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <h5 className="font-bold mb-2 text-gray-700 dark:text-gray-300">Key Responsibilities:</h5>
-                    <ul className="list-disc pl-5 mb-4 space-y-1 text-gray-600 dark:text-gray-400">
-                      {exp.responsibilities.map((resp, i) => (
-                        <li key={i}>{resp}</li>
-                      ))}
-                    </ul>
-
-                    <div className="flex flex-wrap gap-2 mt-4">
-                      {exp.skills.map((skill, i) => (
-                        <span
-                          key={i}
-                          className="px-3 py-1 bg-gradient-to-r from-green-200 via-blue-100 to-purple-200 dark:from-green-900 dark:via-blue-900 dark:to-purple-900 text-sm rounded-full font-semibold shadow-sm text-gray-800 dark:text-gray-200"
-                        >
-                          {skill}
+                      <div className="flex flex-wrap gap-4 text-xs text-slate-500 dark:text-slate-500 font-mono">
+                        <span className="flex items-center gap-1.5">
+                          <FiCalendar size={12} /> {exp.duration}
                         </span>
-                      ))}
+                        <span className="flex items-center gap-1.5">
+                          <FiMapPin size={12} /> {exp.location}
+                        </span>
+                      </div>
                     </div>
-                  </motion.div>
-                )}
+
+                    <FiChevronDown
+                      size={18}
+                      className={`flex-shrink-0 mt-1 text-slate-400 transition-transform duration-300 ${
+                        activeId === exp.id ? 'rotate-180 text-[#64ffda]' : ''
+                      }`}
+                    />
+                  </div>
+
+                  {/* Expandable details */}
+                  <AnimatePresence>
+                    {activeId === exp.id && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="overflow-hidden"
+                      >
+                        <p className="mt-4 text-sm text-slate-500 dark:text-slate-400 leading-relaxed border-t border-slate-200 dark:border-slate-800 pt-4">
+                          {exp.description}
+                        </p>
+                        <ul className="mt-3 space-y-2">
+                          {exp.responsibilities.map((r, ri) => (
+                            <li
+                              key={ri}
+                              className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400"
+                            >
+                              <span className="text-[#64ffda] mt-1 flex-shrink-0 text-xs">▸</span>
+                              {r}
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="flex flex-wrap gap-2 mt-5">
+                          {exp.skills.map((s, si) => (
+                            <span
+                              key={si}
+                              className="px-2.5 py-1 text-xs font-mono bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 rounded"
+                            >
+                              {s}
+                            </span>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </motion.div>
-            </div>
-          </motion.div>
-        ))}
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

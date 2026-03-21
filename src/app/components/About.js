@@ -2,101 +2,94 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { FiUser, FiAward, FiCalendar } from 'react-icons/fi';
 
 export default function About() {
-
   return (
-    <div className="container mx-auto py-32 px-4 md:px-6 lg:px-8">
-      <h2 className="text-4xl font-extrabold mb-3 text-center bg-gradient-to-r from-green-400 via-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">About Me</h2>
-      <p className="text-lg text-center text-gray-700 dark:text-gray-300 mb-4 max-w-2xl mx-auto font-semibold tracking-wide">
-        <span className="inline-block px-4 py-2 rounded-xl bg-white/60 dark:bg-gray-900/60 shadow-md backdrop-blur-md border border-white/20">
-          My mission: <span className="text-green-500 font-bold">Build beautiful, impactful technology for real people.</span>
-        </span>
-      </p>
-      <p className="text-xl text-center text-gray-600 dark:text-gray-400 mb-16 max-w-3xl mx-auto">
-        A passionate developer at the intersection of technology and business.
-      </p>
+    <div className="py-32">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        {/* Profile Image with gradient/shape */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="relative"
-        >
-          <div className="w-full h-[450px] relative rounded-3xl overflow-hidden shadow-2xl border-2 border-white/30">
-            <Image
-              src="/assets/images/profile.jpg"
-              alt="Swayam Dani"
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover transition-transform duration-700 hover:scale-105"
-            />
-            {/* Abstract gradient shape */}
-            <div className="absolute -z-10 -right-10 -bottom-10 w-72 h-72 bg-gradient-to-br from-green-400 via-blue-400 to-purple-500 opacity-60 rounded-full blur-2xl"></div>
-          </div>
-        </motion.div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-        {/* Glassmorphism card for text content */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <div className="rounded-3xl bg-white/60 dark:bg-gray-900/60 shadow-2xl backdrop-blur-md border border-white/20 p-8">
-            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-gray-900 dark:text-white">Computer Science Student • UC San Diego</h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-6">
-              I'm a Computer Science student at UC San Diego. With a GPA of 3.65/4.0, I've completed coursework in 
-              Algorithms, Systems Programming, Cybersecurity, Databases, and Ethics in Tech.
-            </p>
-            <p className="text-gray-700 dark:text-gray-300 mb-6">
-              Currently working as an AI/ML Intern at HandsInTech, where I solely developed a proprietary political 
-              strategy generator using LoRA-adapted LLaMA 3.1-8B and RAG architecture. I'm passionate about leveraging 
-              cutting-edge AI technologies, fine-tuning domain-specific models, and creating software that combines 
-              technical excellence with practical business value.
-            </p>
+          {/* Text side */}
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-[#64ffda] font-mono text-sm mb-4">01. about me</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+              Computer Science<br />
+              <span className="text-slate-500 dark:text-slate-500 font-normal">@ UC San Diego</span>
+            </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="bg-white/80 dark:bg-gray-800/80 p-4 rounded-xl shadow-md flex flex-col items-center">
-                <div className="bg-green-100 dark:bg-green-900 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                  <FiUser className="text-green-600 dark:text-green-300 text-xl" />
-                </div>
-                <h4 className="font-bold mb-1">Experience</h4>
-                <p className="text-gray-600 dark:text-gray-400">3+ Years Coding</p>
-              </div>
-              <div className="bg-white/80 dark:bg-gray-800/80 p-4 rounded-xl shadow-md flex flex-col items-center">
-                <div className="bg-green-100 dark:bg-green-900 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                  <FiAward className="text-green-600 dark:text-green-300 text-xl" />
-                </div>
-                <h4 className="font-bold mb-1">Education</h4>
-                <p className="text-gray-600 dark:text-gray-400">UC San Diego</p>
-              </div>
-              <div className="bg-white/80 dark:bg-gray-800/80 p-4 rounded-xl shadow-md flex flex-col items-center">
-                <div className="bg-green-100 dark:bg-green-900 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                  <FiCalendar className="text-green-600 dark:text-green-300 text-xl" />
-                </div>
-                <h4 className="font-bold mb-1">Projects</h4>
-                <p className="text-gray-600 dark:text-gray-400">10+ Completed</p>
-              </div>
+            <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+              <p>
+                I'm a CS student at UC San Diego with a 3.65 GPA, with coursework spanning
+                Algorithms, Systems Programming, Cybersecurity, Databases, and Ethics in Tech.
+              </p>
+              <p>
+                Currently working as an AI/ML Intern at <span className="text-gray-900 dark:text-white font-medium">HandsInTech</span>, where
+                I solely built a proprietary political strategy generator using LoRA-adapted
+                LLaMA 3.1-8B and RAG architecture — from data pipeline to production API.
+              </p>
+              <p>
+                I'm most interested in the intersection of AI systems and engineering rigor:
+                fine-tuning domain-specific models, building the infrastructure that makes them
+                useful, and shipping software that combines technical depth with real business value.
+              </p>
             </div>
 
-            <div className="mt-8 text-center">
+            {/* Quick stats */}
+            <div className="grid grid-cols-3 gap-6 mt-10 pt-10 border-t border-slate-200 dark:border-slate-800">
+              {[
+                { value: '3.65', label: 'GPA' },
+                { value: '3+', label: 'Years coding' },
+                { value: '15+', label: 'Projects shipped' },
+              ].map(({ value, label }) => (
+                <div key={label}>
+                  <div className="text-2xl font-bold text-[#64ffda] font-display">{value}</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-500 mt-1">{label}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10">
               <a
                 href="#contact"
-                className="group bg-gradient-to-r from-green-400 to-blue-500 hover:from-blue-500 hover:to-green-400 text-white font-bold py-3 px-7 rounded-full shadow-lg transition-all duration-300 inline-flex items-center focus:outline-none focus:ring-2 focus:ring-green-400"
+                className="inline-flex items-center gap-2 px-6 py-3 border border-[#64ffda] text-[#64ffda] text-sm font-semibold rounded-sm hover:bg-[#64ffda]/10 transition-colors duration-200"
               >
-                Let's Connect
-                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                Get in touch
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </a>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+
+          {/* Image side */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="relative mx-auto w-full max-w-sm lg:max-w-none"
+          >
+            {/* Accent border offset */}
+            <div className="absolute -inset-0 rounded-xl border-2 border-[#64ffda]/30 translate-x-3 translate-y-3" />
+            <div className="relative rounded-xl overflow-hidden aspect-[4/5] bg-slate-900">
+              <Image
+                src="/assets/images/profile.jpg"
+                alt="Swayam Dani"
+                fill
+                sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 400px"
+                className="object-cover transition-transform duration-700 hover:scale-103"
+              />
+              {/* Subtle overlay */}
+              <div className="absolute inset-0 bg-[#64ffda]/10 mix-blend-color hover:opacity-0 transition-opacity duration-300" />
+            </div>
+          </motion.div>
+        </div>
       </div>
     </div>
   );

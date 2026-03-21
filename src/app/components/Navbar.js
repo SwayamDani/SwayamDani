@@ -1,37 +1,33 @@
 'use client'
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled]         = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection]   = useState('hero');
 
-  // Handle scroll events
   useEffect(() => {
+    const sections = ['hero', 'about', 'achievements', 'skills', 'projects', 'experience', 'blog', 'contact'];
+
     const handleScroll = () => {
-      const sections = ['hero', 'about', 'achievements', 'skills', 'projects', 'experience', 'blog', 'contact'];
       const scrollPosition = window.scrollY + 200;
-      if (scrollPosition > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(scrollPosition > 50);
+
       for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(sections[i]);
-        if (section && section.offsetTop <= scrollPosition) {
+        const el = document.getElementById(sections[i]);
+        if (el && el.offsetTop <= scrollPosition) {
           setActiveSection(sections[i]);
           break;
         }
       }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (mobileMenuOpen && !e.target.closest('.mobile-menu') && !e.target.closest('.menu-button')) {
@@ -43,135 +39,154 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   const navItems = [
-    { id: 'hero', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
+    { id: 'hero',       label: 'Home' },
+    { id: 'about',      label: 'About' },
+    { id: 'skills',     label: 'Skills' },
+    { id: 'projects',   label: 'Projects' },
     { id: 'experience', label: 'Experience' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'contact',    label: 'Contact' },
   ];
+
+  const linkBase = 'relative px-1 py-2 text-sm font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#64ffda]';
+  const linkActive = 'text-[#64ffda]';
+  const linkIdle   = 'text-slate-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-white';
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? 'backdrop-blur-lg bg-white/60 dark:bg-gray-900/60 shadow-xl py-2 border-b border-gradient-to-r from-green-400/30 via-blue-400/20 to-purple-500/30'
-          : 'bg-transparent py-5'
-      }`}
-        style={{ WebkitBackdropFilter: 'blur(16px)', backdropFilter: 'blur(16px)' }}
+      <nav
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+          scrolled
+            ? 'py-3 bg-white/80 dark:bg-[#0a0f1e]/90 border-b border-slate-200/50 dark:border-slate-800/50'
+            : 'py-5 bg-transparent'
+        }`}
+        style={{ backdropFilter: scrolled ? 'blur(12px)' : 'none' }}
       >
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex justify-between items-center">
+
+            {/* Logo mark */}
             <motion.a
               href="#hero"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-2xl font-extrabold bg-gradient-to-r from-green-400 via-blue-400 to-purple-500 bg-clip-text text-transparent tracking-tight drop-shadow-sm"
+              transition={{ duration: 0.4 }}
+              className="font-display text-xl font-bold tracking-tight"
             >
-              SD
+              <span className="text-[#64ffda]">S</span>
+              <span className="text-gray-900 dark:text-white">D</span>
+              <span className="text-[#64ffda] text-xs align-super ml-0.5">.</span>
             </motion.a>
-            {/* Desktop Menu */}
-            <div className="hidden md:flex space-x-2 lg:space-x-6 items-center">
+
+            {/* Desktop nav */}
+            <div className="hidden md:flex items-center gap-1 lg:gap-2">
               {navItems.map((item) => (
                 <a
                   key={item.id}
                   href={`/#${item.id}`}
-                  className={`relative px-4 py-2 font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400
-                    ${activeSection === item.id
-                      ? 'text-white bg-gradient-to-r from-green-400 to-blue-500 shadow-md'
-                      : 'text-gray-700 dark:text-gray-200 hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800'}
-                  `}
-                  style={activeSection === item.id ? { boxShadow: '0 2px 16px 0 rgba(34,197,94,0.12)' } : {}}
+                  className={`${linkBase} ${activeSection === item.id ? linkActive : linkIdle}`}
                 >
                   {item.label}
-                  {/* No underline for active link */}
+                  {/* Underline indicator */}
+                  {activeSection === item.id && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#64ffda] rounded-full"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
                 </a>
               ))}
-              {/* Blog link - separate from navItems */}
+
               <a
                 href="/blog"
-                className={`relative px-4 py-2 font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400
-                  ${activeSection === 'blog'
-                    ? 'text-white bg-gradient-to-r from-green-400 to-blue-500 shadow-md'
-                    : 'text-gray-700 dark:text-gray-200 hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800'}
-                `}
-                style={activeSection === 'blog' ? { boxShadow: '0 2px 16px 0 rgba(34,197,94,0.12)' } : {}}
+                className={`${linkBase} ${activeSection === 'blog' ? linkActive : linkIdle}`}
               >
                 Blog
-                {/* No underline for active link */}
+                {activeSection === 'blog' && (
+                  <motion.span
+                    layoutId="nav-underline"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#64ffda] rounded-full"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
               </a>
+
               <a
                 href="/resume"
-                className="ml-2 bg-gradient-to-r from-green-400 to-blue-500 hover:from-blue-500 hover:to-green-400 text-white px-5 py-2 rounded-full font-bold shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-400"
+                className="ml-4 px-5 py-2 border border-[#64ffda] text-[#64ffda] text-sm font-semibold rounded-sm hover:bg-[#64ffda]/10 transition-colors duration-200 font-mono"
               >
                 Resume
               </a>
             </div>
-            {/* Mobile Menu Button */}
+
+            {/* Mobile toggle */}
             <button
-              className="md:hidden menu-button focus:outline-none"
+              className="md:hidden menu-button p-1 text-slate-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-white focus:outline-none"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? (
-                <FiX className="text-3xl text-green-400" />
-              ) : (
-                <FiMenu className="text-3xl text-green-400" />
-              )}
+              {mobileMenuOpen
+                ? <FiX size={22} className="text-[#64ffda]" />
+                : <FiMenu size={22} />
+              }
             </button>
           </div>
         </div>
-        {/* Mobile Menu */}
-        <motion.div
-          className={`mobile-menu md:hidden ${mobileMenuOpen ? 'block' : 'hidden'}`}
-          initial={{ opacity: 0, y: -20 }}
-          animate={{
-            opacity: mobileMenuOpen ? 1 : 0,
-            y: mobileMenuOpen ? 0 : -20
-          }}
-          transition={{ duration: 0.2 }}
-        >
-          <div className="bg-white/90 dark:bg-gray-900/90 shadow-2xl rounded-2xl mx-4 mt-3 py-6 px-2 backdrop-blur-lg border border-white/20">
-            {navItems.map((item) => (
-              <a
-                key={item.id}
-                href={`/#${item.id}`}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block py-3 px-6 my-1 rounded-lg font-semibold text-lg transition-all duration-200
-                  ${activeSection === item.id
-                    ? 'bg-gradient-to-r from-green-400 to-blue-400 text-white shadow-md'
-                    : 'text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-400'}
-                `}
-              >
-                {item.label}
-              </a>
-            ))}
-            {/* Blog link - separate from navItems */}
-            <a
-              href="/blog"
-              onClick={() => setMobileMenuOpen(false)}
-              className={`block py-3 px-6 my-1 rounded-lg font-semibold text-lg transition-all duration-200
-                ${activeSection === 'blog'
-                  ? 'bg-gradient-to-r from-green-400 to-blue-400 text-white shadow-md'
-                  : 'text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-400'}
-              `}
+
+        {/* Mobile menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              className="mobile-menu md:hidden"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
             >
-              Blog
-            </a>
-            <a
-              href="/resume"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-3 px-6 my-1 rounded-lg font-bold text-white bg-gradient-to-r from-green-400 to-blue-500 shadow-lg hover:from-blue-500 hover:to-green-400 transition-all duration-300"
-            >
-              Resume
-            </a>
-          </div>
-        </motion.div>
+              <div className="mx-4 mt-2 mb-4 py-4 px-4 bg-white dark:bg-[#0d1117] border border-slate-200 dark:border-slate-800 rounded-lg shadow-xl">
+                {navItems.map((item) => (
+                  <a
+                    key={item.id}
+                    href={`/#${item.id}`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`block py-3 px-2 text-base font-medium rounded transition-colors duration-150 ${
+                      activeSection === item.id
+                        ? 'text-[#64ffda]'
+                        : 'text-slate-700 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white'
+                    }`}
+                  >
+                    {activeSection === item.id && (
+                      <span className="text-[#64ffda] mr-2 font-mono text-xs">▸</span>
+                    )}
+                    {item.label}
+                  </a>
+                ))}
+                <a
+                  href="/blog"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-3 px-2 text-base font-medium text-slate-700 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white rounded transition-colors duration-150"
+                >
+                  Blog
+                </a>
+                <a
+                  href="/resume"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="mt-2 block py-3 px-2 text-center font-semibold text-[#64ffda] border border-[#64ffda] rounded-sm hover:bg-[#64ffda]/10 transition-colors duration-150"
+                >
+                  Resume
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
-      {/* Overlay for mobile menu */}
+
+      {/* Mobile overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 z-40 md:hidden" onClick={() => setMobileMenuOpen(false)}></div>
+        <div
+          className="fixed inset-0 bg-black/30 z-40 md:hidden"
+          onClick={() => setMobileMenuOpen(false)}
+        />
       )}
     </>
   );

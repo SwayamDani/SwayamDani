@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev      # Start development server (localhost:3000)
 npm run build    # Production build
 npm run start    # Start production server
-npm run lint     # Run ESLint (note: ESLint is disabled during builds via next.config.js)
+npm run lint     # Run ESLint
 ```
 
 There are no automated tests in this project.
@@ -59,7 +59,13 @@ The resume is stored as LaTeX source at `src/lib/main.tex`. The `/resume` page:
 2. Calls `/api/resume/render` to get an HTML preview rendered from LaTeX
 3. On "Download PDF", calls `/api/resume/compile` (POST) which sends the `.tex` to the external `latex.ytotech.com` API and streams back a PDF
 
+`/api/resume/pdf` (GET) is an alternate path that serves a pre-compiled `public/resume.pdf` if it's newer than `main.tex`, falling back to the same cached file otherwise. It does not call the external API.
+
 To update the resume, edit `src/lib/main.tex`.
+
+### Unused dependencies
+
+`chart.js`, `react-chartjs-2`, `puppeteer`, `puppeteer-core`, and `@sparticuz/chromium` are in `package.json` but have no active usage in source. Do not assume these provide working functionality.
 
 ### API Routes
 
@@ -73,7 +79,7 @@ All under `src/app/api/`:
 
 ### Styling
 
-Tailwind CSS with dark mode support throughout. Global styles in `src/app/globals.css`. Three.js is used for 3D background effects in Hero; GLSL shader files are supported via `raw-loader` (configured in `next.config.js`). Framer Motion handles scroll-triggered animations on homepage sections.
+Tailwind CSS with dark mode support throughout. Global styles in `src/app/globals.css`. Three.js is used for 3D background effects in Hero; GLSL shader files (`.glsl`, `.vs`, `.fs`, `.vert`, `.frag`) are loaded as strings via Turbopack rules in `next.config.js`. Framer Motion handles scroll-triggered animations on homepage sections.
 
 ### Social Redirect Routes
 

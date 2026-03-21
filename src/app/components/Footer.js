@@ -3,47 +3,58 @@ import React from 'react';
 import { FiLinkedin, FiGithub, FiMail } from 'react-icons/fi';
 
 export default function Footer() {
-    return (
-      <footer className="bg-white dark:bg-gray-800 py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0">
-              <h2 className="text-2xl font-bold">Swayam Dani</h2>
-              <p className="text-gray-600 dark:text-gray-400">CS @ UCSD</p>
-            </div>
-            
-            <div className="flex space-x-6">
-              <a 
-                href="https://www.linkedin.com/in/swayam-dani-554091299" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-400 hover:text-green-500 transition-colors duration-300"
-              >
-                <FiLinkedin className="text-xl" />
-              </a>
-              <a 
-                href="https://github.com/SwayamDani" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-400 hover:text-green-500 transition-colors duration-300"
-              >
-                <FiGithub className="text-xl" />
-              </a>
-              <a 
-                href="mailto:sdani025@ucsd.edu" 
-                className="text-gray-600 dark:text-gray-400 hover:text-green-500 transition-colors duration-300"
-              >
-                <FiMail className="text-xl" />
-              </a>
-            </div>
-          </div>
-          
-          <div className="mt-8 text-center">
-            <p className="text-gray-600 dark:text-gray-400">
-              &copy; {new Date().getFullYear()} Swayam Dani. All rights reserved.
+  return (
+    <footer className="bg-slate-50 dark:bg-[#0d1117] border-t border-slate-200 dark:border-slate-800/60">
+      <div className="container mx-auto px-6 lg:px-8 py-10">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+          {/* Wordmark */}
+          <div>
+            <span className="font-display text-lg font-bold">
+              <span className="text-[#64ffda]">S</span>
+              <span className="text-gray-900 dark:text-white">D</span>
+              <span className="text-[#64ffda] text-xs align-super ml-0.5">.</span>
+            </span>
+            <p className="text-xs text-slate-400 dark:text-slate-600 mt-0.5 font-mono">
+              CS @ UCSD
             </p>
           </div>
+
+          {/* Social links */}
+          <div className="flex items-center gap-5">
+            <a
+              href="https://www.linkedin.com/in/swayam-dani-554091299"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="text-slate-400 hover:text-[#64ffda] transition-colors duration-200"
+            >
+              <FiLinkedin size={18} />
+            </a>
+            <a
+              href="https://github.com/SwayamDani"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="text-slate-400 hover:text-[#64ffda] transition-colors duration-200"
+            >
+              <FiGithub size={18} />
+            </a>
+            <a
+              href="mailto:sdani025@ucsd.edu"
+              aria-label="Email"
+              className="text-slate-400 hover:text-[#64ffda] transition-colors duration-200"
+            >
+              <FiMail size={18} />
+            </a>
+          </div>
+
+          {/* Copyright */}
+          <p className="text-xs text-slate-400 dark:text-slate-600 font-mono">
+            &copy; {new Date().getFullYear()} Swayam Dani
+          </p>
         </div>
-      </footer>
-    );
-  }
+      </div>
+    </footer>
+  );
+}

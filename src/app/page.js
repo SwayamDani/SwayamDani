@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Projects from './components/Projects'
 import Experience from './components/Experience'
@@ -11,112 +11,86 @@ import Achievements from './components/Achievements'
 import Skills from './components/Skills'
 import BackToTop from './components/BackToTop'
 
+// Section wrapper — fades in on scroll
+function Section({ id, className = '', children }) {
+  return (
+    <motion.section
+      id={id}
+      className={className}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true, margin: '-80px' }}
+    >
+      {children}
+    </motion.section>
+  )
+}
+
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch blog posts for the homepage
     async function fetchBlogPosts() {
       try {
         setIsLoading(true);
-        const response = await fetch('/api/blog/post');
-        
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
-        }
-        
-        const data = await response.json();
+        const res = await fetch('/api/blog/post');
+        if (!res.ok) throw new Error(`Error: ${res.status}`);
+        const data = await res.json();
         setBlogPosts(data.posts);
-      } catch (error) {
-        console.error('Error fetching blog posts:', error);
-        // Set to empty array on error
+      } catch {
         setBlogPosts([]);
       } finally {
         setIsLoading(false);
       }
     }
-
     fetchBlogPosts();
   }, []);
 
   return (
     <>
+      {/* Hero — always dark */}
       <section id="hero">
         <Hero />
       </section>
 
-      <motion.section 
-        id="about"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
+      {/* About — standard base */}
+      <Section id="about" className="bg-white dark:bg-[#0a0f1e]">
         <About />
-      </motion.section>
+      </Section>
 
-      <motion.section 
-        id="achievements"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
+      {/* Achievements — accent stripe */}
+      <Section id="achievements" className="bg-slate-50 dark:bg-[#0d1117]">
         <Achievements />
-      </motion.section>
+      </Section>
 
-      <motion.section 
-        id="skills"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
+      {/* Skills — base */}
+      <Section id="skills" className="bg-white dark:bg-[#0a0f1e]">
         <Skills />
-      </motion.section>
+      </Section>
 
-      <motion.section 
-        id="projects"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }} 
-      >
+      {/* Projects — alt */}
+      <Section id="projects" className="bg-slate-50 dark:bg-[#0d1117]">
         <Projects />
-      </motion.section>
+      </Section>
 
-      <motion.section 
-        id="experience"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
+      {/* Experience — base */}
+      <Section id="experience" className="bg-white dark:bg-[#0a0f1e]">
         <Experience />
-      </motion.section>
+      </Section>
 
+      {/* Blog — alt (only when posts exist) */}
       {!isLoading && blogPosts.length > 0 && (
-        <motion.section 
-          id="blog"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
+        <Section id="blog" className="bg-slate-50 dark:bg-[#0d1117]">
           <BlogSection posts={blogPosts} />
-        </motion.section>
+        </Section>
       )}
 
-      <motion.section 
-        id="contact"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
+      {/* Contact — base */}
+      <Section id="contact" className="bg-white dark:bg-[#0a0f1e]">
         <Contact />
-      </motion.section>
+      </Section>
 
       <BackToTop />
     </>

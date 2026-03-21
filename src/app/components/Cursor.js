@@ -1,87 +1,82 @@
 'use client'
-import React from 'react';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 export default function Cursor() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [hidden, setHidden] = useState(true);
-  const [clicked, setClicked] = useState(false);
-  const [linkHovered, setLinkHovered] = useState(false);
-  
+  const [position, setPosition]     = useState({ x: 0, y: 0 });
+  const [hidden, setHidden]         = useState(true);
+  const [clicked, setClicked]       = useState(false);
+  const [hoveringLink, setHoveringLink] = useState(false);
+
   useEffect(() => {
-    // Only show custom cursor on desktop devices
-    if (window.innerWidth > 768) {
-      setHidden(false);
-      
-      const updatePosition = (e) => {
-        setPosition({ x: e.clientX, y: e.clientY });
-      };
-      
-      const handleLinkHoverEvents = () => {
-        document.querySelectorAll('a, button').forEach(el => {
-          el.addEventListener('mouseenter', () => setLinkHovered(true));
-          el.addEventListener('mouseleave', () => setLinkHovered(false));
-        });
-      };
-      
-      const handleMouseDown = () => setClicked(true);
-      const handleMouseUp = () => setClicked(false);
-      
-      window.addEventListener('mousemove', updatePosition);
-      window.addEventListener('mousedown', handleMouseDown);
-      window.addEventListener('mouseup', handleMouseUp);
-      window.addEventListener('DOMContentLoaded', handleLinkHoverEvents);
-      
-      // Add event after component mount as well
-      handleLinkHoverEvents();
-      
-      // Remove event listeners on cleanup
-      return () => {
-        window.removeEventListener('mousemove', updatePosition);
-        window.removeEventListener('mousedown', handleMouseDown);
-        window.removeEventListener('mouseup', handleMouseUp);
-        document.querySelectorAll('a, button').forEach(el => {
-          el.removeEventListener('mouseenter', () => setLinkHovered(true));
-          el.removeEventListener('mouseleave', () => setLinkHovered(false));
-        });
-      };
-    }
+    // Only show on desktop
+    if (window.innerWidth <= 768) return;
+    setHidden(false);
+
+    const onMove  = (e) => setPosition({ x: e.clientX, y: e.clientY });
+    const onDown  = () => setClicked(true);
+    const onUp    = () => setClicked(false);
+
+    const addLinkListeners = () => {
+      document.querySelectorAll('a, button').forEach((el) => {
+        el.addEventListener('mouseenter', () => setHoveringLink(true));
+        el.addEventListener('mouseleave', () => setHoveringLink(false));
+      });
+    };
+
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mousedown', onDown);
+    window.addEventListener('mouseup',   onUp);
+    addLinkListeners();
+
+    // Re-attach after potential DOM changes
+    const observer = new MutationObserver(addLinkListeners);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mousedown', onDown);
+      window.removeEventListener('mouseup',   onUp);
+      observer.disconnect();
+    };
   }, []);
-  
+
   if (hidden) return null;
-  
+
   return (
     <>
+      {/* Inner dot — snaps immediately */}
       <motion.div
-        className="cursor-dot fixed top-0 left-0 w-3 h-3 bg-green-500 rounded-full pointer-events-none z-[100]"
-        style={{ mixBlendMode: 'difference' }}
+        className="fixed top-0 left-0 pointer-events-none z-[100] rounded-full"
+        style={{
+          width: 8,
+          height: 8,
+          backgroundColor: '#64ffda',
+          mixBlendMode: 'difference',
+        }}
         animate={{
-          x: position.x - 6,
-          y: position.y - 6,
-          scale: clicked ? 0.5 : linkHovered ? 0.5 : 1,
+          x: position.x - 4,
+          y: position.y - 4,
+          scale: clicked ? 0.4 : hoveringLink ? 0 : 1,
         }}
-        transition={{
-          type: 'spring',
-          stiffness: 500,
-          damping: 28,
-          mass: 0.5,
-        }}
+        transition={{ type: 'spring', stiffness: 600, damping: 28, mass: 0.3 }}
       />
-      
+
+      {/* Outer ring — lags slightly for a fluid feel */}
       <motion.div
-        className="cursor-ring fixed top-0 left-0 w-10 h-10 border-2 border-green-500 rounded-full pointer-events-none z-[99]"
+        className="fixed top-0 left-0 pointer-events-none z-[99] rounded-full border"
+        style={{
+          width: hoveringLink ? 44 : 36,
+          height: hoveringLink ? 44 : 36,
+          borderColor: '#64ffda',
+          opacity: 0.5,
+        }}
         animate={{
-          x: position.x - 20,
-          y: position.y - 20,
-          scale: clicked ? 1.2 : linkHovered ? 1.5 : 1,
+          x: position.x - (hoveringLink ? 22 : 18),
+          y: position.y - (hoveringLink ? 22 : 18),
+          scale: clicked ? 0.8 : 1,
         }}
-        transition={{
-          type: 'spring',
-          stiffness: 250,
-          damping: 20,
-          mass: 0.8,
-        }}
+        transition={{ type: 'spring', stiffness: 200, damping: 22, mass: 0.6 }}
       />
     </>
   );

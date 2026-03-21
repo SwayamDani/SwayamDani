@@ -3,10 +3,18 @@
 /* Dark mode via .dark class on <html> */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Theme overrides */
+/* ─── Design Tokens ──────────────────────────────────────────────────── */
 @theme {
-  --font-family-sans: 'Inter', sans-serif;
-  --color-green-50: #f0fdf4;
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+
+  /* Primary accent — electric teal. Use sparingly, not on every element. */
+  --color-accent: #64ffda;
+  --color-accent-muted: rgb(100 255 218 / 0.08);
+  --color-accent-dim:   rgb(100 255 218 / 0.18);
+
+  /* Keep existing green scale */
+  --color-green-50:  #f0fdf4;
   --color-green-100: #dcfce7;
   --color-green-200: #bbf7d0;
   --color-green-300: #86efac;
@@ -18,31 +26,112 @@
   --color-green-900: #14532d;
 }
 
+/* ─── Base ───────────────────────────────────────────────────────────── */
 @layer base {
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply font-sans text-gray-900 bg-white transition-colors duration-300;
+    @apply font-sans text-gray-900 bg-white dark:bg-[#0a0f1e] dark:text-slate-300;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display), 'Space Grotesk', sans-serif;
     @apply font-bold;
   }
 
   ::selection {
-    @apply bg-green-500 text-white;
+    background-color: #64ffda;
+    color: #0a0f1e;
+  }
+
+  .dark ::selection {
+    background-color: #64ffda;
+    color: #0a0f1e;
   }
 }
 
-/* Custom classes */
+/* ─── Section Backgrounds (alternating rhythm) ───────────────────────── */
+.section-base {
+  @apply bg-white dark:bg-[#0a0f1e];
+}
+
+.section-alt {
+  @apply bg-slate-50 dark:bg-[#0d1117];
+}
+
+/* ─── Marquee (Skills scroller) ──────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+  width: max-content;
+  display: flex;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Accent glow (sparingly on key interactive elements) ────────────── */
+.accent-glow {
+  box-shadow: 0 0 20px rgb(100 255 218 / 0.25);
+}
+
+.accent-glow:hover {
+  box-shadow: 0 0 30px rgb(100 255 218 / 0.4);
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #64ffda;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4de8c4;
+}
+
+/* ─── Focus ──────────────────────────────────────────────────────────── */
+*:focus-visible {
+  outline: 2px solid #64ffda;
+  outline-offset: 3px;
+}
+
+/* ─── Theme-switch transition (scoped to color props only to avoid      */
+/*     conflicting with Framer Motion transform/opacity animations) ───── */
+*, *::before, *::after {
+  transition-property: color, background-color, border-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 350ms;
+}
+
+/* ─── Markdown (blog) ────────────────────────────────────────────────── */
 .markdown-content {
   @apply text-gray-900 dark:text-gray-100 leading-relaxed;
 }
 
 .markdown-content h1 {
-  @apply text-4xl font-bold mt-10 mb-6 text-green-600 dark:text-green-400 pb-2 border-b border-gray-200 dark:border-gray-700;
+  @apply text-4xl font-bold mt-10 mb-6 pb-2 border-b border-gray-200 dark:border-gray-700;
+  color: #64ffda;
 }
 
 .markdown-content h2 {
@@ -82,7 +171,8 @@
 }
 
 .markdown-content blockquote {
-  @apply border-l-4 border-green-500 pl-6 italic my-8 py-2 text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 rounded-r-lg;
+  border-left: 4px solid #64ffda;
+  @apply pl-6 italic my-8 py-2 text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 rounded-r-lg;
 }
 
 .markdown-content code {
@@ -93,100 +183,36 @@
   @apply bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto my-6;
 }
 
-
-.tech-icon {
-  @apply flex flex-col items-center justify-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md text-center;
-}
-
-.tech-icon i {
-  @apply text-3xl text-green-500 mb-2;
-}
-
-.expertise-box {
-  @apply p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md flex flex-col items-center justify-center text-center h-full;
-}
-
-.expertise-box i {
-  @apply text-3xl text-green-500 mb-3;
-}
-
-/* Animation classes */
+/* ─── Float animation (used in Experience) ───────────────────────────── */
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
 }
 
-/* Enhanced gradient backgrounds */
-.gradient-bg {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+/* ─── Underline reveal (nav active indicator) ────────────────────────── */
+.nav-underline {
+  position: relative;
 }
 
-/* Smooth transitions for theme-sensitive properties only — scoped to avoid
-   overriding Framer Motion's per-element animation durations */
-*, *::before, *::after {
-  transition-property: color, background-color, border-color;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+.nav-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #64ffda;
+  border-radius: 1px;
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
 }
 
-/* Enhanced scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.dark ::-webkit-scrollbar-track {
-  background: #1f2937;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #059669 0%, #2563eb 100%);
-}
-
-/* Glassmorphism enhancement */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.dark .glass {
-  background: rgba(17, 24, 39, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Improved focus states */
-*:focus-visible {
-  outline: 2px solid #10b981;
-  outline-offset: 2px;
-}
-
-/* Better text selection */
-::selection {
-  background-color: #10b981;
-  color: white;
-}
-
-.dark ::selection {
-  background-color: #3b82f6;
-  color: white;
+.nav-underline:hover::after,
+.nav-underline.active::after {
+  transform: scaleX(1);
 }

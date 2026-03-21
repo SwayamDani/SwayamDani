@@ -1,8 +1,22 @@
 import './globals.css'
+import { Inter, Space_Grotesk } from 'next/font/google'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ThemeToggle from './components/ThemeToggle'
 import Script from 'next/script'
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+})
 
 export const metadata = {
   title: 'Swayam Dani | Portfolio',
@@ -32,7 +46,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <head>
         {/* Inline script runs before paint — prevents dark mode flash on load */}
         <script
@@ -47,7 +61,7 @@ export default function RootLayout({ children }) {
           data-cf-beacon='{"token": "c8307c0beb59419a8aac8f45eb964228"}'
         />
       </head>
-      <body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen transition-colors duration-300">
+      <body className="bg-white dark:bg-[#0a0f1e] text-gray-900 dark:text-slate-300 min-h-screen">
         <ThemeToggle />
         <Navbar />
         <main>{children}</main>
