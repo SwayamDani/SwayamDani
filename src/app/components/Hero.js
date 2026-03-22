@@ -202,15 +202,18 @@ export default function Hero() {
 
   return (
     <div className="relative h-screen flex items-center overflow-hidden bg-white dark:bg-[#0a0f1e]">
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
+      <canvas
+        ref={canvasRef}
+        className={`absolute inset-0 w-full h-full transition-opacity duration-[350ms] ${isDark ? 'opacity-100' : 'opacity-25'}`}
+      />
 
-      {/* Vignette — CSS-transitioned automatically by the 350ms rule */}
+      {/* Overlay — in light mode a strong directional gradient shields text from the canvas */}
       <div
         className="absolute inset-0 transition-[background] duration-[350ms]"
         style={{
           background: isDark
             ? 'radial-gradient(ellipse 80% 80% at 50% 50%, transparent 40%, rgba(10,15,30,0.7) 100%)'
-            : 'radial-gradient(ellipse 80% 80% at 50% 50%, transparent 40%, rgba(255,255,255,0.65) 100%)',
+            : 'linear-gradient(to right, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.92) 35%, rgba(255,255,255,0.55) 60%, rgba(255,255,255,0.05) 100%)',
         }}
       />
 
@@ -332,7 +335,7 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.0 }}
       >
-        <span className="text-slate-400 dark:text-slate-600 text-xs font-mono tracking-widest uppercase">scroll</span>
+        <span className="text-slate-600 dark:text-slate-500 text-xs font-mono tracking-widest uppercase">scroll</span>
         <motion.div
           className="w-px h-10 transition-[background] duration-[350ms]"
           style={{ background: `linear-gradient(to bottom, ${accent}99, transparent)` }}

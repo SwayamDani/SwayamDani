@@ -41,8 +41,10 @@ Separate routes:
 ### Middleware (`middleware.ts`)
 
 Two behaviors enforced at the edge:
-1. **Blog access** is restricted to `localhost:3000` only — all other hosts are redirected to `/not_found`. This means the blog is not publicly accessible in production.
+1. **Blog access** is restricted to `localhost:3000` only — all other hosts are redirected to `/not_found`. Since no `/not_found` route exists, this falls through to `src/app/not-found.js` (the 404 page). The blog is intentionally not publicly accessible in production.
 2. **Sanity Studio** at `/studio` is protected by HTTP Basic Auth using `STUDIO_USER` / `STUDIO_PASS` env vars.
+
+The middleware contains active `console.log` debug statements that emit on every matched request in production.
 
 ### Sanity CMS
 
@@ -81,6 +83,14 @@ All under `src/app/api/`:
 
 Tailwind CSS with dark mode support throughout. Global styles in `src/app/globals.css`. Three.js is used for 3D background effects in Hero; GLSL shader files (`.glsl`, `.vs`, `.fs`, `.vert`, `.frag`) are loaded as strings via Turbopack rules in `next.config.js`. Framer Motion handles scroll-triggered animations on homepage sections.
 
-### Social Redirect Routes
+### Redirect Routes
 
-`next.config.js` defines UTM-tagged redirect shortcuts (e.g. `/li/blog1`, `/ig/blog2`, `/x/blog`) for sharing blog posts on LinkedIn, Instagram, and X.
+`next.config.js` defines two sets of redirects:
+- **Numeric shortcuts**: `/blog/1` and `/blog/2` permanently redirect to their full slugs.
+- **UTM-tagged social shortcuts**: `/li/blog1`, `/ig/blog2`, `/x/blog`, etc. redirect to blog URLs with `utm_source`/`utm_medium`/`utm_campaign` params for LinkedIn, Instagram, and X.
+
+When adding a new blog post, add corresponding entries in both sets.
+
+### Images
+
+`next/image` remote patterns are restricted to `images.unsplash.com` and `cdn.sanity.io`. Using any other external image domain will throw a runtime error. Add new domains to `next.config.js` `images.remotePatterns` before use.

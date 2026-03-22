@@ -27,7 +27,7 @@ export default function ThemeToggle() {
     <button
       onClick={toggleTheme}
       aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="fixed z-50 bottom-6 right-20 p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+      className="fixed z-50 bottom-6 left-6 p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-[#64ffda]"
     >
       <motion.div
         initial={{ rotate: 0 }}

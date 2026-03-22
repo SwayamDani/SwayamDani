@@ -39,12 +39,13 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   const navItems = [
-    { id: 'hero',       label: 'Home' },
-    { id: 'about',      label: 'About' },
-    { id: 'skills',     label: 'Skills' },
-    { id: 'projects',   label: 'Projects' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'contact',    label: 'Contact' },
+    { id: 'hero',         label: 'Home' },
+    { id: 'about',        label: 'About' },
+    { id: 'achievements', label: 'Achievements' },
+    { id: 'skills',       label: 'Skills' },
+    { id: 'projects',     label: 'Projects' },
+    { id: 'experience',   label: 'Experience' },
+    { id: 'contact',      label: 'Contact' },
   ];
 
   const linkBase = 'relative px-1 py-2 text-sm font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#64ffda]';
@@ -97,19 +98,21 @@ export default function Navbar() {
                 </a>
               ))}
 
-              <a
-                href="/blog"
-                className={`${linkBase} ${activeSection === 'blog' ? linkActive : linkIdle}`}
-              >
-                Blog
-                {activeSection === 'blog' && (
-                  <motion.span
-                    layoutId="nav-underline"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#64ffda] rounded-full"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </a>
+              {process.env.NODE_ENV === 'development' && (
+                <a
+                  href="/blog"
+                  className={`${linkBase} ${activeSection === 'blog' ? linkActive : linkIdle}`}
+                >
+                  Blog
+                  {activeSection === 'blog' && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#64ffda] rounded-full"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </a>
+              )}
 
               <a
                 href="/resume"
@@ -161,13 +164,15 @@ export default function Navbar() {
                     {item.label}
                   </a>
                 ))}
-                <a
-                  href="/blog"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block py-3 px-2 text-base font-medium text-slate-700 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white rounded transition-colors duration-150"
-                >
-                  Blog
-                </a>
+                {process.env.NODE_ENV === 'development' && (
+                  <a
+                    href="/blog"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-3 px-2 text-base font-medium text-slate-700 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white rounded transition-colors duration-150"
+                  >
+                    Blog
+                  </a>
+                )}
                 <a
                   href="/resume"
                   onClick={() => setMobileMenuOpen(false)}

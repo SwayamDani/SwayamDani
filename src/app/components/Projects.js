@@ -159,8 +159,9 @@ export default function Projects() {
                     <div className="absolute inset-0 bg-gradient-to-r from-[#0a0f1e]/20 to-transparent" />
                   </>
                 ) : (
-                  <div className="w-full h-full min-h-[220px] flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-                    <FiCode size={52} className="text-slate-600" />
+                  <div className="w-full h-full min-h-[220px] flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-[#0a0f1e] via-[#0d1117] to-[#0a1628]">
+                    <FiCode size={36} className="text-[#64ffda]/30" />
+                    <span className="text-[10px] font-mono tracking-[0.3em] text-[#64ffda]/30 uppercase">Proprietary</span>
                   </div>
                 )}
               </div>

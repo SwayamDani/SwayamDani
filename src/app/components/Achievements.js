@@ -42,10 +42,10 @@ export default function Achievements() {
   }, []);
 
   const stats = [
-    { Icon: FiCode,     value: 15, suffix: '+', label: 'Projects Completed', accent: '#64ffda' },
-    { Icon: FiBriefcase, value: 3, suffix: '',  label: 'Professional Internships', accent: '#7c3aed' },
-    { Icon: FiAward,    value: 5,  suffix: '+', label: 'Hackathons Participated', accent: '#f59e0b' },
-    { Icon: FiGithub,   value: 50, suffix: '+', label: 'GitHub Contributions', accent: '#ec4899' },
+    { Icon: FiCode,      value: 15, suffix: '+', label: 'Projects Completed',    accent: '#64ffda' },
+    { Icon: FiBriefcase, value: 3,  suffix: '',  label: 'Professional Internships', accent: '#64ffda' },
+    { Icon: FiAward,     value: 5,  suffix: '+', label: 'Hackathons Participated', accent: '#64ffda' },
+    { Icon: FiGithub,    value: 50, suffix: '+', label: 'GitHub Contributions',  accent: '#64ffda' },
   ];
 
   return (

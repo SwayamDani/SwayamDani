@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiMail, FiPhone, FiMapPin, FiGithub, FiLinkedin, FiSend } from 'react-icons/fi';
+import { FiMail, FiMapPin, FiGithub, FiLinkedin, FiSend } from 'react-icons/fi';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
@@ -78,7 +78,6 @@ export default function Contact() {
           >
             {[
               { Icon: FiMail,    label: 'Email',    value: 'sdani025@ucsd.edu',  href: 'mailto:sdani025@ucsd.edu' },
-              { Icon: FiPhone,   label: 'Phone',    value: '341-224-3555',       href: 'tel:3412243555' },
               { Icon: FiMapPin,  label: 'Location', value: 'San Diego, CA',      href: null },
             ].map(({ Icon, label, value, href }) => (
               <div key={label} className="flex items-start gap-4">

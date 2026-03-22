@@ -36,10 +36,10 @@ export default function BackToTop() {
           exit={{ opacity: 0, scale: 0 }}
           transition={{ duration: 0.2 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-4 bg-gradient-to-r from-green-400 to-blue-500 text-white rounded-full shadow-2xl hover:from-blue-500 hover:to-green-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-400 group"
+          className="fixed bottom-6 right-6 z-50 p-3 bg-white dark:bg-[#0d1117] border border-[#64ffda]/60 text-[#64ffda] rounded-full shadow-lg hover:bg-[#64ffda]/10 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#64ffda] group"
           aria-label="Back to top"
         >
-          <FiArrowUp className="text-2xl group-hover:animate-bounce" />
+          <FiArrowUp size={18} />
         </motion.button>
       )}
     </AnimatePresence>
