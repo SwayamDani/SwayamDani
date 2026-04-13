@@ -9,7 +9,7 @@ export default function Navbar() {
   const [activeSection, setActiveSection]   = useState('hero');
 
   useEffect(() => {
-    const sections = ['hero', 'about', 'achievements', 'skills', 'projects', 'experience', 'blog', 'contact'];
+    const sections = ['hero', 'about', 'achievements', 'projects', 'experience', 'blog', 'skills', 'contact'];
 
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 200;
