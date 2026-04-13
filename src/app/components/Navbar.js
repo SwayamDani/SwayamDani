@@ -42,9 +42,10 @@ export default function Navbar() {
     { id: 'hero',         label: 'Home' },
     { id: 'about',        label: 'About' },
     { id: 'achievements', label: 'Achievements' },
-    { id: 'skills',       label: 'Skills' },
     { id: 'projects',     label: 'Projects' },
     { id: 'experience',   label: 'Experience' },
+    { id: 'blog',         label: 'Blog' },
+    { id: 'skills',       label: 'Skills' },
     { id: 'contact',      label: 'Contact' },
   ];
 
@@ -98,22 +99,6 @@ export default function Navbar() {
                 </a>
               ))}
 
-              {process.env.NODE_ENV === 'development' && (
-                <a
-                  href="/blog"
-                  className={`${linkBase} ${activeSection === 'blog' ? linkActive : linkIdle}`}
-                >
-                  Blog
-                  {activeSection === 'blog' && (
-                    <motion.span
-                      layoutId="nav-underline"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#64ffda] rounded-full"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </a>
-              )}
-
               <a
                 href="/resume"
                 className="ml-4 px-5 py-2 border border-[#64ffda] text-[#64ffda] text-sm font-semibold rounded-sm hover:bg-[#64ffda]/10 transition-colors duration-200 font-mono"
@@ -164,15 +149,6 @@ export default function Navbar() {
                     {item.label}
                   </a>
                 ))}
-                {process.env.NODE_ENV === 'development' && (
-                  <a
-                    href="/blog"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block py-3 px-2 text-base font-medium text-slate-700 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white rounded transition-colors duration-150"
-                  >
-                    Blog
-                  </a>
-                )}
                 <a
                   href="/resume"
                   onClick={() => setMobileMenuOpen(false)}

@@ -29,24 +29,6 @@ const basicAuth = (req: NextRequest) => {
 }
 
 export function middleware(req: NextRequest) {
-  // For debugging - inspect request hostname and path
-  console.log('Middleware running for:', req.nextUrl.pathname);
-  console.log('Request hostname:', req.headers.get('host'));
-  console.log('Request URL:', req.url);
-  
-  // Handle blog route restriction to only localhost:3000
-  if (req.nextUrl.pathname.startsWith('/blog')) {
-    const hostname = req.headers.get('host');
-    
-    // More robust check - ensure it's exactly localhost:3000
-    if (hostname !== 'localhost:3000' && !req.url.includes('localhost:3000')) {
-      console.log(`Blocking access to ${req.nextUrl.pathname} from ${hostname}`);
-      
-      // Redirect to the homepage instead of showing the blog
-      return NextResponse.redirect(new URL('/not_found', req.url));
-    }
-  }
-  
   // Handle studio authentication
   if (req.nextUrl.pathname.startsWith('/studio')) {
     return basicAuth(req)
@@ -56,5 +38,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/studio/:path*', '/blog/:path*'],
+  matcher: ['/studio/:path*'],
 }

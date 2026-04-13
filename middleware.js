@@ -35,20 +35,6 @@ const basicAuth = (req) => {
 }
 
 export default function middleware(req) {
-  // Handle blog route restriction to only localhost:3000
-  if (req.nextUrl.pathname.startsWith('/blog')) {
-    const hostname = req.headers.get('host');
-
-    // Only allow localhost:3000, block all other domains including localhost with other ports
-    if (hostname !== 'localhost:3000') {
-      
-      // Return 403 Forbidden response with a clear message
-      return new Response('Access Denied: This page is only accessible from localhost:3000', {
-        status: 403,
-      });
-    }
-  }
-  
   // Handle studio authentication
   if (req.nextUrl.pathname.startsWith('/studio')) {
     return basicAuth(req)
@@ -58,5 +44,5 @@ export default function middleware(req) {
 }
 
 export const config = {
-  matcher: ['/studio/:path*', '/blog/:path*'],
+  matcher: ['/studio/:path*'],
 }
