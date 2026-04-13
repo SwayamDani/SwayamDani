@@ -1,101 +1,104 @@
-\documentclass[11pt]{article}
-\usepackage[a4paper,margin=0.5in]{geometry}
+\documentclass[10.5pt]{article}
+\usepackage[a4paper,top=0.4in,bottom=0.4in,left=0.45in,right=0.45in]{geometry}
 \usepackage{enumitem}
 \usepackage{hyperref}
 \usepackage{titlesec}
 \usepackage{parskip}
 
-\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+\titleformat{\section}{\normalsize\bfseries}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{5pt}{3pt}
 
-\hypersetup{
-    colorlinks=true,
-    urlcolor=black,
-    linkcolor=black
-}
+\hypersetup{colorlinks=true,urlcolor=black,linkcolor=black}
+
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{0pt}
+
+\newcommand{\blist}{\begin{itemize}[leftmargin=*,noitemsep,topsep=1pt,parsep=0pt,itemsep=1pt]}
+\newcommand{\elist}{\end{itemize}\vspace{3pt}}
 
 \begin{document}
 
-% ----------------------------
 % Header
-% ----------------------------
 \begin{center}
-    \textbf{\Huge \scshape Swayam Dani} \\
-    \vspace{2pt}
+    {\huge\textbf{\scshape Swayam Dani}} \\[1pt]
     \small
     341-224-3555 $|$
-    \href{mailto:sdani025@ucsd.edu}{sdani025@ucsd.edu} $|$
+    \href{mailto:sdani@ucsd.edu}{sdani@ucsd.edu} $|$
     \href{https://www.linkedin.com/in/swayam-dani}{LinkedIn} $|$
     \href{https://github.com/swayamdani}{GitHub} $|$
     \href{https://www.swayamdani.com}{swayamdani.com}
 \end{center}
+\vspace{-4pt}
 
-% ----------------------------
 % Education
-% ----------------------------
 \section*{Education}
 \textbf{University of California, San Diego} \hfill San Diego, CA \\
-\textit{B.S. in Computer Science} \hfill \textit{Expected June 2027} \\
-Relevant Coursework: Algorithms, Data Structures, Systems Programming, Databases, Cybersecurity, Ethics in Technology
+\textit{Bachelors of Science in Computer Science} \hfill \textit{Expected June 2027} \\[-2pt]
+\small \textbf{Coursework:} Algorithms, Data Structures, Systems Programming, Probability \& Statistics, Databases, Cybersecurity
+ 
 
-% ----------------------------
 % Technical Skills
-% ----------------------------
 \section*{Technical Skills}
-\textbf{Languages:} Python, C++, Java, JavaScript, TypeScript, SQL, HTML/CSS \\
-\textbf{Frameworks \& Platforms:} FastAPI, React, Next.js, Node.js, Firebase, Redis, MongoDB, SQLite \\
-\textbf{AI / Data:} NumPy, pandas, scikit-learn, PyTorch, TensorFlow, Hugging Face, OpenCV \\
-\textbf{Systems \& Security:} Async Programming, JWT, Argon2, API Security, k-Anonymity, Encryption \\
-\textbf{Tools:} Git, GCP, Heroku, Streamlit, Figma, Agile
+\small
+\textbf{Languages:} Python, C++, Java, JavaScript, TypeScript, SQL \\[-1pt]
+\textbf{Quant / Data:} NumPy, pandas, scikit-learn, PyTorch, Hugging Face, sentence-transformers, pgvector, TimescaleDB \\[-1pt]
+\textbf{Systems \& Backend:} FastAPI, Asyncio, PostgreSQL, Redis, Docker, Railway, REST APIs, JWT, Argon2 \\[-1pt]
+\textbf{Tools \& Workflow:} Git, GCP, Streamlit, Next.js, React, cross-functional collaboration, technical documentation \\
+\textbf{Software:} Office 365, Figma, Jira, Adobe Suite 
 
-% ----------------------------
 % Projects
-% ----------------------------
-\section*{Projects}
+\section*{Relevant Experience}
+\small
 
-\textbf{Crawlit — Modular Web Crawler \& Analyzer} \hfill \textit{Python, Asyncio, SQLite} \\
-- Designed and implemented a reusable asynchronous crawling framework with support for authenticated sessions, rate limiting, and fault tolerance. \\
-- Built modular extraction pipelines for HTML content, metadata, images, tables, links, and site structure graphs. \\
-- Implemented URL deduplication, crawl state persistence, and error recovery to enable large-scale, resumable crawls. 
+\textbf{HandsInTech --- AI/ML Intern} \hfill \textit{June 2025 -- September 2025}
+\blist
+    \item Architected a political intelligence engine using LoRA-adapted LLaMA 3.1-8B with RAG; collaborated with a cross-functional team to integrate real-time crawled data, election datasets, and document intelligence pipelines.
+    \item Delivered weekly technical updates to stakeholders; proactively documented system design decisions and adapted the architecture based on team feedback in a fast-moving research environment.
+\elist
 
+\textbf{AlphaLens --- Quantitative Signal Research Platform --- Developer} \hfill \textit{February 2026 -- Present} \\ \textit{Python, FastAPI, TimescaleDB, pgvector}
+\blist
+    \item Built an end-to-end quant research pipeline: async news crawler $\rightarrow$ semantic embedding (sentence-transformers + pgvector IVFFlat) $\rightarrow$ signal generation $\rightarrow$ real-time Telegram alerts for a 50-stock universe.
+    \item Engineered NLP-driven alpha features from financial news; tracked information coefficient (IC) and signal decay to evaluate signal quality and persistence across the Nifty50.
+    \item Architected a multi-service system (crawler, AI-worker, notifier, API) coordinated via PostgreSQL; deployed on Railway with TimescaleDB for time-series signal storage and backtesting.
+    \item Independently scoped and executed the full research-to-production cycle --- from signal ideation and feature engineering to deployment and monitoring --- adapting quickly as data characteristics shifted.
+\elist
 
-\vspace{0.5em}
+\textbf{Swarm --- Federated AI Workspace  --- Team Lead/Developer} \hfill \textit{March 2026} \\ \hfill \textit{Python, FastAPI, Ollama, RAG, MCP} \hfill \textit{\small Qualcomm Multiverse Hackathon}
+\blist
+    \item Collaborated with a teammate under tight deadlines to design and ship a privacy-first federated inference system: local LLM nodes orchestrated by a coordinator agent routing queries via federated RAG with no data leaving the local network.
+    \item Owned the backend MCP integrations (Gmail, Calendar, Slack, GitHub, Notion) enabling cross-source personal data queries with zero-egress guarantees; coordinated system interfaces with teammate's Next.js frontend.
+    \item Designed relay server architecture on Railway for peer discovery and session routing without centralizing user data; adapted the architecture mid-hackathon in response to latency constraints discovered during testing.
+\elist
 
-\textbf{Password Security Assessment Platform} \hfill \textit{Python, FastAPI, React, Redis} \\
-- Developed a full-stack security tool to evaluate password strength and breach exposure using k-Anonymity APIs. \\
-- Implemented Argon2 hashing, Redis caching, and JWT-based stateless authentication. \\
-- Delivered real-time analytics dashboards for actionable password hygiene insights.
+\textbf{Political Intelligence Engine --- LoRA-Adapted LLM + RAG --- Python Developer} \hfill \textit{June 2025 - September 2025} \\ \hfill \textit{Python, FastAPI, LLaMA 3.1}
+\blist
+    \item Architected a domain-specific intelligence engine fine-tuned via LoRA on LLaMA 3.1-8B with real-time crawled data, regional election datasets, and multi-source document pipelines; presented findings and design decisions to senior stakeholders weekly.
+    \item Built async FastAPI backend supporting session-aware inference, structured analytics logging, and multi-source correlation; documented system architecture and API contracts for team-wide use.
+\elist
 
-\vspace{0.5em}
+\textbf{Crawlit --- Async Web Crawling Framework  --- Developer} \hfill \textit{May 2025 - June 2025} \\ \hfill \textit{Python, Asyncio, SQLite}
+\blist
+    \item Designed a production-grade async crawling library with authenticated sessions, adaptive rate limiting, fault tolerance, and resumable crawl state persistence via SQLite.
+    \item Maintained public documentation and a structured issue tracker; resolved a 31-issue audit through iterative testing and peer review, improving reliability and code quality across the library.
+\elist
 
-\textbf{UniRideShare} \hfill \textit{Next.js, Firebase, Google Maps API} \\
-- Built a real-time college rideshare platform with geolocation, authentication, and route-based matching. \\
-- Implemented in-app messaging and safety-focused coordination features.
+\textbf{Password Security Assessment Platform  --- Developer} \hfill \textit{March 2025 - May 2025} \\ \hfill \textit{Python, FastAPI, React, Redis}
+\blist
+    \item Full-stack security tool evaluating breach exposure via k-Anonymity APIs; implemented Argon2 hashing, Redis caching, and JWT stateless auth with real-time analytics dashboards.
+    \item Designed system to be extensible and well-documented for future contributors; applied security best practices validated through structured code review.
+\elist
 
-\vspace{0.5em}
+\section*{Other Experience}
+\small
+\textbf{Marketing Operations Intern} --- BCOE, UC Riverside \hfill \textit{Jul 2025 -- Sep 2025}
+\blist
+    \item Redesigned Monday.com workflows and cross-team dashboards to improve execution visibility; produced standardized templates adopted across multiple concurrent initiatives.
+\elist
 
-\textbf{Additional Projects:}
-StyleAI (AI outfit generation with OpenAI + DALL·E), DR.ai (medical Q\&A assistant), Travel Planner (Flask-based itinerary system with SQL caching).
-
-% ----------------------------
-% Experience
-% ----------------------------
-\section*{Experience}
-
-\textbf{AI/ML Intern} — HandsInTech \hfill \textit{June 2025 -- Present} \\
-- Architected a proprietary political intelligence and strategy engine using LoRA-adapted LLaMA 3.1-8B with RAG. \\
-- Integrated real-time crawled data, regional election datasets, and document intelligence pipelines. \\
-- Built an async FastAPI backend supporting session-aware inference, analytics logging, and multi-source correlation.
-
-\vspace{0.25em}
-
-\textbf{Marketing Operations Intern} — BCOE, UC Riverside \hfill \textit{Jul 2025 -- Sep 2025} \\
-- Redesigned Monday.com workflows and dashboards to improve cross-team execution and reporting. \\
-- Produced templates and internal documentation adopted across multiple initiatives.
-
-\vspace{0.25em}
-
-\textbf{Engineering Ambassador} — BCOE, UC Riverside \hfill \textit{Apr 2024 -- June 2025} \\
-- Represented the College of Engineering at outreach events and digital campaigns. \\
-- Supported event planning and student engagement initiatives.
+\textbf{Engineering Ambassador} --- BCOE, UC Riverside \hfill \textit{Apr 2024 -- Jun 2025}
+\blist
+    \item Represented the College of Engineering at outreach events; collaborated with student teams on event planning, communications, and digital engagement campaigns.
+\elist
 
 \end{document}

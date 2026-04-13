@@ -7,10 +7,19 @@ import { FiDownload, FiArrowLeft, FiRefreshCw } from 'react-icons/fi';
 
 export default function ResumePage() {
   const [latexSource, setLatexSource] = useState('');
-  const [renderedHTML, setRenderedHTML] = useState('');
+  const [pdfReady, setPdfReady] = useState(false);
+  const [pdfUrl, setPdfUrl] = useState('/api/resume/pdf');
   const [isLoading, setIsLoading] = useState(true);
   const [isCompiling, setIsCompiling] = useState(false);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    return () => {
+      if (pdfUrl.startsWith('blob:')) {
+        window.URL.revokeObjectURL(pdfUrl);
+      }
+    };
+  }, [pdfUrl]);
 
   useEffect(() => {
     loadResume();
@@ -21,10 +30,10 @@ export default function ResumePage() {
       setIsLoading(true);
       setError(null);
       
-      // Load both LaTeX source (for PDF compilation) and rendered HTML
-      const [sourceResponse, renderResponse] = await Promise.all([
+      // Load LaTeX source (for PDF compilation) and verify PDF preview availability.
+      const [sourceResponse, pdfResponse] = await Promise.all([
         fetch('/api/resume/source'),
-        fetch('/api/resume/render')
+        fetch('/api/resume/pdf')
       ]);
       
       if (!sourceResponse.ok) {
@@ -33,38 +42,35 @@ export default function ResumePage() {
       
       const sourceData = await sourceResponse.json();
       setLatexSource(sourceData.latexContent);
-      
-      // Handle render response
-      if (renderResponse.ok) {
-        try {
-          const contentType = renderResponse.headers.get('content-type');
-          if (contentType && contentType.includes('application/json')) {
-            const renderData = await renderResponse.json();
-            setRenderedHTML(renderData.html || '');
-          } else {
-            // If it's not JSON, it might be HTML error page
-            const text = await renderResponse.text();
-            console.warn('Received non-JSON response from render API:', text.substring(0, 100));
-            setError('Failed to render resume HTML - received invalid response');
-          }
-        } catch (parseError) {
-          console.error('Error parsing render response:', parseError);
-          setError('Failed to parse resume HTML response');
-        }
+
+      if (pdfResponse.ok) {
+        setPdfReady(true);
+        // Refresh the iframe URL to avoid stale PDF cache in dev and preview recent edits.
+        setPdfUrl(`/api/resume/pdf?v=${Date.now()}`);
       } else {
-        try {
-          const errorData = await renderResponse.json();
-          console.warn('HTML rendering failed:', errorData);
-          setError(errorData.error || 'Failed to render resume HTML');
-        } catch (parseError) {
-          const text = await renderResponse.text();
-          console.error('Error parsing error response:', text.substring(0, 100));
-          setError('Failed to render resume HTML');
+        // Fallback to a freshly compiled PDF so preview remains accurate.
+        const compileResponse = await fetch('/api/resume/compile', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ latexContent: sourceData.latexContent }),
+        });
+
+        if (!compileResponse.ok) {
+          setPdfReady(false);
+          setError('Resume PDF preview is unavailable. Use Download PDF to generate the latest file.');
+        } else {
+          const blob = await compileResponse.blob();
+          const objectUrl = window.URL.createObjectURL(blob);
+          setPdfUrl(objectUrl);
+          setPdfReady(true);
         }
       }
     } catch (err) {
       console.error('Error loading resume:', err);
       setError(err.message || 'Failed to load resume');
+      setPdfReady(false);
     } finally {
       setIsLoading(false);
     }
@@ -165,7 +171,7 @@ export default function ResumePage() {
           </div>
         )}
 
-        {/* Resume Content - Rendered from LaTeX */}
+        {/* Resume Content - PDF preview preserves native LaTeX layout and fonts */}
         <div className="rounded-3xl bg-white dark:bg-gray-900 shadow-2xl border-2 border-gray-200/40 dark:border-gray-700/40 overflow-hidden">
           {isLoading ? (
             <div className="w-full flex items-center justify-center py-32">
@@ -181,18 +187,16 @@ export default function ResumePage() {
                 <p className="text-gray-600 dark:text-gray-400 text-sm">Please use the Download PDF button to view the resume.</p>
               </div>
             </div>
-          ) : renderedHTML ? (
-            <div 
-              className="w-full"
-              style={{ 
-                minHeight: '600px'
-              }}
-              dangerouslySetInnerHTML={{ __html: renderedHTML }}
+          ) : pdfReady ? (
+            <iframe
+              src={pdfUrl}
+              title="Resume PDF Preview"
+              className="w-full min-h-[900px] bg-white"
             />
           ) : (
             <div className="w-full flex items-center justify-center py-32">
               <div className="text-center">
-                <p className="text-gray-600 dark:text-gray-400">No resume content available.</p>
+                <p className="text-gray-600 dark:text-gray-400">No resume preview available.</p>
               </div>
             </div>
           )}

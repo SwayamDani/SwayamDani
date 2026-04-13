@@ -11,6 +11,13 @@ function createFallbackHTML(latexContent) {
   }
   
   let content = docMatch[1];
+
+  // Normalize custom macros and spacing directives used in the resume source.
+  content = content
+    .replace(/\\blist/g, '\\begin{itemize}')
+    .replace(/\\elist/g, '\\end{itemize}')
+    .replace(/\\\\\[[^\]]+\]/g, '<br>')
+    .replace(/\{\\huge\\textbf\{\\scshape\s*([^}]+)\}\}/g, '<h1 style="font-size: 2.5rem !important; font-weight: bold !important; text-transform: uppercase !important; letter-spacing: 1px !important; margin-bottom: 0.5rem !important;">$1</h1>');
   
   // Process LaTeX commands step by step
   content = content
@@ -21,6 +28,12 @@ function createFallbackHTML(latexContent) {
     // Handle center environment
     .replace(/\\begin\{center\}/g, '<div style="text-align: center; margin-bottom: 0.5rem !important;">')
     .replace(/\\end\{center\}/g, '</div>')
+    // Handle itemize environment and list items
+    .replace(/\\begin\{itemize\}(?:\[[^\]]*\])?/g, '<ul style="margin-top: 0.4rem !important; margin-bottom: 0.5rem !important; padding-left: 1.25rem;">')
+    .replace(/\\end\{itemize\}/g, '</ul>')
+    .replace(/\\item\s+/g, '<li style="margin-bottom: 0.2rem !important;">')
+    // Close li when a new item starts or when list ends
+    .replace(/(<li[^>]*>[\s\S]*?)(?=<li|<\/ul>)/g, '$1</li>')
     // Handle text formatting
     .replace(/\\textbf\{([^}]+)\}/g, '<strong>$1</strong>')
     .replace(/\\textit\{([^}]+)\}/g, '<em>$1</em>')

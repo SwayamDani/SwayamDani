@@ -4,8 +4,29 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FiGithub, FiExternalLink, FiCode } from 'react-icons/fi';
 
-export default function Projects() {
-  const projects = [
+const PROJECTS = [
+    {
+      id: 9,
+      title: 'AlphaLens',
+      description:
+        'Quantitative signal research platform with an end-to-end async pipeline: financial news crawl, semantic embedding with sentence-transformers + pgvector (IVFFlat), alpha feature generation, and real-time Telegram alerts for a 50-stock universe. Includes IC/signal-decay tracking, multi-service orchestration via PostgreSQL, and Railway deployment with TimescaleDB-backed time-series storage/backtesting.',
+      demoUrl: null,
+      screenshot: null,
+      tech: ['Python', 'FastAPI', 'TimescaleDB', 'pgvector'],
+      github: null,
+      featured: true,
+    },
+    {
+      id: 10,
+      title: 'Swarm',
+      description:
+        'Privacy-first federated AI workspace built during Qualcomm Multiverse Hackathon: local LLM nodes coordinated through federated RAG with zero data egress. Implemented MCP integrations (Gmail, Calendar, Slack, GitHub, Notion) for cross-source queries, plus a Railway relay architecture for peer discovery/session routing under latency constraints.',
+      demoUrl: null,
+      screenshot: null,
+      tech: ['Python', 'FastAPI', 'Ollama', 'RAG', 'MCP'],
+      github: 'https://github.com/SwayamDani/Swarm',
+      featured: true,
+    },
     {
       id: 1,
       title: 'Password Security Assessment Tool',
@@ -94,10 +115,12 @@ export default function Projects() {
       github: 'https://github.com/SwayamDani/Casino',
       featured: false,
     },
-  ];
+];
 
-  const featured = projects.filter((p) => p.featured);
-  const rest     = projects.filter((p) => !p.featured);
+export default function Projects() {
+
+  const featured = PROJECTS.filter((p) => p.featured);
+  const rest     = PROJECTS.filter((p) => !p.featured);
 
   return (
     <div className="py-32">
@@ -188,15 +211,17 @@ export default function Projects() {
                   ))}
                 </div>
                 <div className="flex items-center gap-5">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-slate-500 hover:text-[#64ffda] transition-colors duration-200"
-                    aria-label="GitHub"
-                  >
-                    <FiGithub size={20} />
-                  </a>
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-500 hover:text-[#64ffda] transition-colors duration-200"
+                      aria-label="GitHub"
+                    >
+                      <FiGithub size={20} />
+                    </a>
+                  )}
                   {project.demoUrl && (
                     <a
                       href={project.demoUrl}
@@ -238,15 +263,17 @@ export default function Projects() {
               <div className="flex justify-between items-start mb-5">
                 <FiCode size={26} className="text-[#64ffda]" />
                 <div className="flex items-center gap-3">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-slate-500 hover:text-[#64ffda] transition-colors"
-                    aria-label="GitHub"
-                  >
-                    <FiGithub size={18} />
-                  </a>
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-500 hover:text-[#64ffda] transition-colors"
+                      aria-label="GitHub"
+                    >
+                      <FiGithub size={18} />
+                    </a>
+                  )}
                   {project.demoUrl && (
                     <a
                       href={project.demoUrl}
