@@ -87,20 +87,6 @@ export default function Skills() {
         </motion.p>
       </div>
 
-      {/* Scrolling marquee strip — decorative, hidden from screen readers */}
-      <div className="overflow-hidden border-y border-slate-200 dark:border-slate-800/80 py-4 mb-20" aria-hidden="true">
-        <div className="animate-marquee flex gap-6">
-          {[...allSkills, ...allSkills].map((skill, i) => (
-            <span
-              key={i}
-              className="flex-shrink-0 px-4 py-1.5 text-sm font-mono font-medium text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 rounded-full bg-white dark:bg-slate-900/40"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-
       {/* Skill categories grid */}
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <motion.div

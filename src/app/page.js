@@ -65,11 +65,6 @@ export default function Home() {
         <Achievements />
       </Section>
 
-      {/* Skills — base */}
-      <Section id="skills" className="bg-white dark:bg-[#0a0f1e]">
-        <Skills />
-      </Section>
-
       {/* Projects — alt */}
       <Section id="projects" className="bg-slate-50 dark:bg-[#0d1117]">
         <Projects />
@@ -86,6 +81,11 @@ export default function Home() {
           <BlogSection posts={blogPosts} />
         </Section>
       )}
+
+      {/* Skills — base */}
+      <Section id="skills" className="bg-white dark:bg-[#0a0f1e]">
+        <Skills />
+      </Section>
 
       {/* Contact — base */}
       <Section id="contact" className="bg-white dark:bg-[#0a0f1e]">

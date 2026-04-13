@@ -12,7 +12,7 @@ export default function Experience() {
       role: 'AI/ML Intern',
       company: 'HandsInTech',
       location: 'Mumbai, India',
-      duration: 'June 2025 – Present',
+      duration: 'June 2025 – Sep 2025',
       description:
         'Developing proprietary AI-powered political strategy generator using advanced LLM techniques and RAG architecture.',
       responsibilities: [
